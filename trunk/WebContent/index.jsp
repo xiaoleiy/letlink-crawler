@@ -9,21 +9,6 @@
 <script type="text/javascript" src="styles/jquery-1.6.2.js"></script>
 <script type="text/javascript" src="styles/main.js"></script>
 <script type="text/javascript">
-	(function(){
-		var username = getCookie('username'), password = getCookie('password');
-		if(username != null || password != null){
-			$.ajax({
-				url: 'login',
-				type: 'POST',
-				dataType: 'json',
-				data: 'username=' + username + '&password=' + password,
-				error: function(){
-					location.href='error.jsp';
-				}
-			});
-		}else
-			window.location.href='login.jsp';
-	})();
 </script>
 </head>
 <body>
@@ -39,7 +24,8 @@
 			<li>Server Management</li>
 		</ul>
 	</div>
-	<div class="main"></div>
+	<div class="main">
+	</div>
 	<div class="footer">Powered by <i>Heritrix</i>, <i>NetArchive</i>!</div>
 </body>
 </html>
