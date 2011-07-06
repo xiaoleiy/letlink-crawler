@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+
+/-------------------- Layout -----------------------/
+div.header {
+	font-size: 18px;
+	font-family: verdana;
+	margin: 5px;
+	border: 5px;
+	position: fixed;
+	text-align: center;
+	background-color: 
+}
+
+div.menu {
+	
+}
+
+div.main {
+	
+}
+
+div.footer {
+	
+}
+
+/-------------------- component --------------------/
