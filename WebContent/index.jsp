@@ -26,7 +26,7 @@
 		</ul>
 	</div>
 	<div class="main">
-		<label>Logined:&nbsp;</label><p><s:property value="message" /></p>
+		<label>Logined:&nbsp;</label><s:property value="message" />
 	</div>
 	<div class="footer">Powered by <i>Heritrix</i>, <i>NetArchive</i>!</div>
 </body>
