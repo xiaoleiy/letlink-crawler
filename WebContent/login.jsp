@@ -8,41 +8,34 @@
 	<script type="text/javascript" src="styles/jquery-1.6.2.js"></script>
 	<script type="text/javascript" src="styles/main.js"></script>
 	<script type="text/javascript">
-		var username = $("input[name='username']");
-		var password = $("input[name='password']");
-		var btn_submit = $("input[name='submit']");
-		btn_submit.click(function(){
-			if(validate())
-				$("form").submit(function(){
-					
-				});
-		});
-		
-		function add_tip(input){
-			var input_name = input.attr("name");
-			
-			return false;
-		}
+		var username = $('input[name="username"]');
+		var password = $('input[name="password"]');
+		var btn_submit = $('input[name="submit"]');
 		
 		function validate(){
-			//username.get(0).value == username.attr("value") == username.val(); -- jQuery selector
+			//username.get(0).value == username.attr('value') == username.val()
 			var result = true;
 			if(nonEmpty(username.val()) && nonEmpty(password.val()))
 				return true;
 			if(!nonEmpty(username.val())){
-				username.after("<p id='username_tip' class='input_tip'>Please type your username</p>").fadeIn("slow");
-				username.change(function(){$("p#username_tip").hide()});
+				username.after('<p id="username_tip" class="input_tip">Please type your username</p>').fadeIn('slow');
+				username.change(function(){$('p#username_tip').hide()});
 				username.focus();
 				result = false;
 			}
 			if(!nonEmpty(password.val())){
-				password.after("<p id='password_tip' class='input_tip'>Please type your password</p>").fadeIn("slow");
-				password.change(function(){$("p#password_tip").hide()});
+				password.after('<p id="password_tip" class="input_tip">Please type your password</p>').fadeIn('slow');
+				password.change(function(){$('p#password_tip').hide()});
 				if(nonEmpty(username)) password.focus();
 				result = false;
 			}
 			return result;
 		}
+		
+		btn_submit.click(function(){
+			if(validate())
+				$('form').submit();
+		});
 	</script>
 </head>
 <body>
