@@ -1,59 +1,52 @@
 package com.letlink.webinterface.servlets;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
+import com.opensymphony.xwork2.ActionSupport;
 
 /**
  * Servlet implementation class Login
  */
-public class Login extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Login() {
-        super();
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO Validate the login username/password by calling project phase-1 service.
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		System.out.println("[INFO] username: " + username + ", password: " + password);
-		if(nonEmpty(username) && "admin".equals(username) && nonEmpty(password) && "admin".equals(password)){
-			Cookie usernameCookie = new Cookie("username", username);
-			Cookie passwordCookie = new Cookie("password", password);
-			usernameCookie.setMaxAge(7*24*60*60);
-			passwordCookie.setMaxAge(7*24*60*60);
-			response.addCookie(usernameCookie);
-			response.addCookie(passwordCookie);
-			response.setContentType("text/html; charset=UTF-8");
-			response.sendRedirect(request.getContextPath() + "/index.jsp");
-			return;
+public class Login extends ActionSupport{
+	private String username;
+	private String password;
+	private boolean login;
+	
+	public Login(){}
+	
+	@Override
+	public String execute(){
+		if("admin".equals(username) && "admin".equals(password)){
+			setLogin(true);
+			return "SUCCESS";
 		}else{
-			response.setContentType("text/html; charset=UTF-8");
-			response.sendRedirect(request.getContextPath() + "/login.jsp");
+			return "ERROR";
 		}
 	}
+	
+	
+	public String getUsername() {
+		return username;
+	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public boolean isLogin() {
+		return login;
+	}
+
+	public void setLogin(boolean login) {
+		this.login = login;
 	}
 	
-	boolean nonEmpty(String str){
-		if(str == null || "".equals(str))
-			return false;
-		else return true;
-	}
 }
