@@ -10,20 +10,19 @@
 <script type="text/javascript" src="styles/main.js"></script>
 <script type="text/javascript">
 	(function(){
-		var username = getCookie('username');
-		var password = getCookie('password');
+		var username = getCookie('username'), password = getCookie('password');
 		if(username != null || password != null){
 			$.ajax({
-				url: 'login.do',
+				url: 'login',
 				type: 'POST',
 				dataType: 'json',
-				data: 'username=' + username + "&password=" + password,
+				data: 'username=' + username + '&password=' + password,
 				error: function(){
 					location.href='error.jsp';
 				}
 			});
-		}
-		window.location.href='login.jsp';
+		}else
+			window.location.href='login.jsp';
 	})();
 </script>
 </head>
@@ -31,7 +30,15 @@
 	<div class="header">
 		<h1>Letlink-Crawler Management</h1>
 	</div>
-	<div class="menu"></div>
+	<div class="menu">
+		<ul>
+			<li>Crawler Definition</li>
+			<li>Task/Job Management</li>
+			<li>Image Viewer</li>
+			<li>System Monitor</li>
+			<li>Server Management</li>
+		</ul>
+	</div>
 	<div class="main"></div>
 	<div class="footer">Powered by <i>Heritrix</i>, <i>NetArchive</i>!</div>
 </body>
