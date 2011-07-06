@@ -1,18 +1,19 @@
 @CHARSET "UTF-8";
 
-/-------------------- Layout -----------------------/
+/*-------------------- Layout -----------------------*/
 div.header {
-	font-size: 18px;
+	font-size: 10px;
 	font-family: verdana;
 	margin: 5px;
 	border: 5px;
-	position: fixed;
+	position: absolute;
+	top: 10px;
 	text-align: center;
-	background-color: 
 }
 
 div.menu {
-	
+	position: relative;
+	top: 10px;
 }
 
 div.main {
@@ -23,4 +24,21 @@ div.footer {
 	
 }
 
-/-------------------- component --------------------/
+/*-------------------- component --------------------*/
+form#login_form {
+	position: absolute;
+	top: 20%;
+	left: 40%;
+	right: 20%;
+}
+
+label.basic_label {
+	width: 86px;
+}
+
+
+
+label.input_tip {
+	display: none;
+	color: red;
+}
