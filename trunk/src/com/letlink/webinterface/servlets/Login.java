@@ -1,7 +1,11 @@
 package com.letlink.webinterface.servlets;
 
 import java.io.IOException;
+import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -17,9 +21,12 @@ public class Login extends ActionSupport{
 	
 	@Override
 	public String execute(){
-		System.out.println("username: " + username + ", password: " + password);
+		ActionContext ctx = ActionContext.getContext();
+		Map session = ctx.getSession();
 		if("admin".equals(username) && "admin".equals(password)){
 			setLogin(true);
+			session.put("login_user", username);
+			session.put("logined", true);
 			setMessage("You logged into the system!");
 			return "SUCCESS";
 		}else{
