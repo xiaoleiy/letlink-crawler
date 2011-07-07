@@ -5,36 +5,13 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Login</title>
-	<link type="text/css" rel="stylesheet" href="styles/main.css" />
-	<script type="text/javascript" src="styles/jquery-1.6.2.js"></script>
-	<script type="text/javascript" src="styles/main.js"></script>
-	<script type="text/javascript">
-		function validate(){
-			//username.get(0).value == username.attr('value') == username.val()
-			var result = true;
-			var username = $('input[name="username"]');
-			var password = $('input[name="password"]');
-			if(nonEmpty(username.val()) && nonEmpty(password.val()))
-				return true;
-			if(!nonEmpty(username.val())){
-				$('label#username_tip').fadeIn('slow');
-				username.change(function(){$('label#username_tip').hide()});
-				username.focus();
-				result = false;
-			}
-			if(!nonEmpty(password.val())){
-				$('label#password_tip').fadeIn('slow');
-				password.change(function(){$('label#password_tip').hide()});
-				if(nonEmpty(username.val())) password.focus();
-				result = false;
-			}
-			return result;
-		}
-		
-	</script>
 </head>
-<body>
-	<form id="login_form" name="login_form" action="login" method="POST" onsubmit="return validate();">
+<body bgcolor="#CCCCCC">
+<div class="top_frame">
+	<div>
+		<jsp:include page="index.jsp"></jsp:include>
+	</div>
+	<form id="login_form" name="login_form" action="login" method="POST" onsubmit="return validate()">
 		<div class="login_input">
 			<label class="basic_label">Username:&nbsp;</label>
 			<input id="login_username" class="basic_input" name="username" type="text" maxlength="20" tabindex="1" />
@@ -50,5 +27,6 @@
 			<input class="btn_submit" name="submit" type="submit" tabindex="3" />
 		</div>
 	</form>
+</div>
 </body>
 </html>
