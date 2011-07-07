@@ -1,3 +1,6 @@
+/**
+ * utilities
+ * */
 function getCookie(cname) {
 	var start_pos = document.cookie.indexOf(cname + '=', 0);
 	if (start_pos != -1) {
@@ -22,6 +25,9 @@ function setCookie(cname, content) {
 			+ expireDate.toUTCString();
 }
 
+/**
+ * [login.jsp] Validate user's inputs
+ * */
 function validate(){
 	//username.get(0).value == username.attr('value') == username.val()
 	var result = true;
@@ -48,4 +54,16 @@ function nonEmpty(text){
 	if(text == null || text.length == 0)
 		return false;
 	else return true;
+}
+
+/**
+ * [menu.jsp] Show/hide drop-down submenus 
+ */
+function show_submenu(submenu_list){
+	submenu_list.css('overflow', 'visible');
+}
+
+function hide_submenu(submenu_list){
+	submenu_list.css('height', '0');
+	submenu_list.css('overflow', 'hidden');
 }
