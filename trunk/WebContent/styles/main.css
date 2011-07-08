@@ -2,8 +2,8 @@
 
 /*-------------------- Layout -----------------------*/
 body {
+	font: 12px Arial,Helvetica,sans-serif;
 	font-size: 100%;
-	font-family: verdana;
 }
 
 .top_frame {
@@ -66,9 +66,63 @@ body {
 	overflow: auto;
 }
 
+.main {
+	position: absolute;
+	left: 50px;
+	right: 50px;
+	margin-top: 40px;
+	margin-bottom: 20px;
+	padding: 5px 20px;
+}
+
+.main table {
+	border: 1px solid;
+	padding: 5px;
+	margin: 5px;
+	border-spacing: 1px solid #696969;
+	border-collapse: collapse;
+	caption-side: top;
+}
+
+.main table thead {
+	background-color: #778899;
+}
+
+.main table thead td {
+	text-align: center;
+	vertical-align: center;
+	padding: 5px;
+	border: 1px solid #696969;
+}
+
+.main table tbody td {
+	text-align: left;
+	vertical-align: center;
+	padding: 1px 5px;
+	border: 1px solid #696969;
+}
+
 
 .footer {
-	
+	font: 12px Arial,Helvetica,sans-serif;
+	line-wight: 150%;
+	border-top: 1px dashed #DDD;
+	color: #999;
+	padding-top: 10px;
+	margin-top: 40px;
+	position: absolute;
+	bottom: 50px;
+	left: 50px;
+	right: 50px;
+}
+
+.footer span {
+	float: left;
+}
+
+.footer span a {
+	text-decoration: none;
+	font-color: #999;
 }
 
 /*-------------------- login --------------------*/

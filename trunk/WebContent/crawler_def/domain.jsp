@@ -14,9 +14,37 @@
 <title>Domains Definition</title>
 </head>
 <body>
-	<jsp:include page="../_menu.jsp"></jsp:include>
-	<div>
-		<label>test</label>
+	<div style="margin: 5px 0"><jsp:include page="../_menu.jsp"></jsp:include></div>
+	<div class="main">
+		<table>
+			<caption>Domains List</caption>
+			<thead>
+				<tr>
+					<td>Name</td>
+					<td>Alias</td>
+					<td>Config</td>
+					<td>Description</td>
+					<td>URL Excluded</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>google.com</td>
+					<td>GOOG</td>
+					<td>null</td>
+					<td>Google's all domains</td>
+					<td>https://plus.google.com</td>
+				</tr>
+			</tbody>
+			
+		</table>
+	</div>
+	<div class="footer">
+		<span>&nbsp; &copy; 2011, www.letlink.com, All rights Reserved</span>
+		<br /><span>&nbsp; Powered by <a href="http://crawler.archive.org" ><i>Heritrix Project</i></a>
+			, and <a href="http://netarchive.dk/suite" ><i>Netarchive Project</i></a>.
+		</span>
+		<br /><span>&nbsp; Compatible with CSS2, HTML4.0</span>
 	</div>
 </body>
 </html>
