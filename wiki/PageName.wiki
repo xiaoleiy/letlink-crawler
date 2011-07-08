@@ -8,12 +8,12 @@ The Letlink Crawler© product crawls images from all over the web, with high per
 = Details =
 
 The product provides the following functions:
-*Crawler definition
-*Image crawling
-*System monitor and image viewing
-*Distributed servers for crawling
-*Centralized image storage
-*Interface to the phase-I project
+* Crawler definition
+* Image crawling
+* System monitor and image viewing
+* Distributed servers for crawling
+* Centralized image storage
+* Interface to the phase-I project
 
 ----
 This product is powered by _Heritrix_, a open-source Java crawler, and _Netarchive_, a open-source implementation of distributed crawlers
