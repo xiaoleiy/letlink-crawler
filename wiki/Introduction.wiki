@@ -1,4 +1,4 @@
-#summary Edited wiki page Introduction through web user interface.
+#summary Introduction to the distributed image crawler.
 
 == Introduction ==
 
