@@ -6,20 +6,20 @@ import java.sql.Timestamp;
 public class Job implements Serializable {
 	
 	private static final long serialVersionUID = 4118571298233469176L;
-	private int jobID;
+	private long jobID;
 	private String name;
 	private int priority;	//Refer to JobPriority.java for valid priority code
 	private String status;	//Refer to JobStatus.java for valid job status.
-	private int refCrawlerID;
-	private int refSeedlistID;
+	private long refCrawlerID;
+	private long refSeedlistID;
 	private Timestamp submitDate;
 	private Timestamp startDate;
 	private Timestamp endDate;
-	private int forceMaxbytes;
-	private int forceMaxcount;
-	private int forceMaxrunningtime;
+	private long forceMaxbytes;
+	private long forceMaxcount;
+	private long forceMaxrunningtime;
 	private int crawlingNum;	//The sequential no of this job in its contained crawler
-	private int resubmittedAsJob;
+	private long resubmittedAsJob;
 	private String crawlingErrors;
 	private String crawlingErrorDetails;
 	private String uploadErrors;
@@ -31,12 +31,12 @@ public class Job implements Serializable {
 	
 	public Job(){}
 
-	public Job(String name, int priority, String status, int refCrawlerID,
-			int refSeedlistID, Timestamp submitDate, Timestamp startDate,
-			Timestamp endDate, int forceMaxbytes, int forceMaxcount,
-			int forceMaxrunningtime, int crawlingNum, String crawlingErrors,
+	public Job(String name, int priority, String status, long refCrawlerID,
+			long refSeedlistID, Timestamp submitDate, Timestamp startDate,
+			Timestamp endDate, long forceMaxbytes, long forceMaxcount,
+			long forceMaxrunningtime, int crawlingNum, String crawlingErrors,
 			String crawlingErrorDetails, String uploadErrors,
-			String uploadErrorDetails, int resubmittedAsJob, String altCol01,
+			String uploadErrorDetails, long resubmittedAsJob, String altCol01,
 			String altCol02, int altCol03, int altCol04) {
 		super();
 		this.name = name;
@@ -62,11 +62,11 @@ public class Job implements Serializable {
 		this.altCol04 = altCol04;
 	}
 
-	public int getJobID() {
+	public long getJobID() {
 		return jobID;
 	}
 
-	public void setJobID(int jobID) {
+	public void setJobID(long jobID) {
 		this.jobID = jobID;
 	}
 
@@ -94,19 +94,19 @@ public class Job implements Serializable {
 		this.status = status;
 	}
 
-	public int getRefCrawlerID() {
+	public long getRefCrawlerID() {
 		return refCrawlerID;
 	}
 
-	public void setRefCrawlerID(int refCrawlerID) {
+	public void setRefCrawlerID(long refCrawlerID) {
 		this.refCrawlerID = refCrawlerID;
 	}
 
-	public int getRefSeedlistID() {
+	public long getRefSeedlistID() {
 		return refSeedlistID;
 	}
 
-	public void setRefSeedlistID(int refSeedlistID) {
+	public void setRefSeedlistID(long refSeedlistID) {
 		this.refSeedlistID = refSeedlistID;
 	}
 
@@ -134,27 +134,27 @@ public class Job implements Serializable {
 		this.endDate = endDate;
 	}
 
-	public int getForceMaxbytes() {
+	public long getForceMaxbytes() {
 		return forceMaxbytes;
 	}
 
-	public void setForceMaxbytes(int forceMaxbytes) {
+	public void setForceMaxbytes(long forceMaxbytes) {
 		this.forceMaxbytes = forceMaxbytes;
 	}
 
-	public int getForceMaxcount() {
+	public long getForceMaxcount() {
 		return forceMaxcount;
 	}
 
-	public void setForceMaxcount(int forceMaxcount) {
+	public void setForceMaxcount(long forceMaxcount) {
 		this.forceMaxcount = forceMaxcount;
 	}
 
-	public int getForceMaxrunningtime() {
+	public long getForceMaxrunningtime() {
 		return forceMaxrunningtime;
 	}
 
-	public void setForceMaxrunningtime(int forceMaxrunningtime) {
+	public void setForceMaxrunningtime(long forceMaxrunningtime) {
 		this.forceMaxrunningtime = forceMaxrunningtime;
 	}
 
@@ -198,11 +198,11 @@ public class Job implements Serializable {
 		this.uploadErrorDetails = uploadErrorDetails;
 	}
 
-	public int getResubmittedAsJob() {
+	public long getResubmittedAsJob() {
 		return resubmittedAsJob;
 	}
 
-	public void setResubmittedAsJob(int resubmittedAsJob) {
+	public void setResubmittedAsJob(long resubmittedAsJob) {
 		this.resubmittedAsJob = resubmittedAsJob;
 	}
 

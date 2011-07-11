@@ -6,17 +6,17 @@ import java.sql.Timestamp;
 public class Imagestat implements Serializable {
 
 	private static final long serialVersionUID = 7470344393781184564L;
-	private int imagestatID;
-	private int refCrawlerID;
-	private int refJobID;
-	private int refDomainID;
-	private int refSeedlistID;
+	private long imagestatID;
+	private long refCrawlerID;
+	private long refJobID;
+	private long refDomainID;
+	private long refSeedlistID;
 	private Timestamp crawledDate;
 	
 	public Imagestat(){}
 
-	public Imagestat(int refCrawlerID, int refJobID, int refDomainID,
-			int refSeedlistID, Timestamp crawledDate) {
+	public Imagestat(long refCrawlerID, long refJobID, long refDomainID,
+			long refSeedlistID, Timestamp crawledDate) {
 		super();
 		this.refCrawlerID = refCrawlerID;
 		this.refJobID = refJobID;
@@ -25,43 +25,43 @@ public class Imagestat implements Serializable {
 		this.crawledDate = crawledDate;
 	}
 
-	public int getImagestatID() {
+	public long getImagestatID() {
 		return imagestatID;
 	}
 
-	public void setImagestatID(int imagestatID) {
+	public void setImagestatID(long imagestatID) {
 		this.imagestatID = imagestatID;
 	}
 
-	public int getRefCrawlerID() {
+	public long getRefCrawlerID() {
 		return refCrawlerID;
 	}
 
-	public void setRefCrawlerID(int refCrawlerID) {
+	public void setRefCrawlerID(long refCrawlerID) {
 		this.refCrawlerID = refCrawlerID;
 	}
 
-	public int getRefJobID() {
+	public long getRefJobID() {
 		return refJobID;
 	}
 
-	public void setRefJobID(int refJobID) {
+	public void setRefJobID(long refJobID) {
 		this.refJobID = refJobID;
 	}
 
-	public int getRefDomainID() {
+	public long getRefDomainID() {
 		return refDomainID;
 	}
 
-	public void setRefDomainID(int refDomainID) {
+	public void setRefDomainID(long refDomainID) {
 		this.refDomainID = refDomainID;
 	}
 
-	public int getRefSeedlistID() {
+	public long getRefSeedlistID() {
 		return refSeedlistID;
 	}
 
-	public void setRefSeedlistID(int refSeedlistID) {
+	public void setRefSeedlistID(long refSeedlistID) {
 		this.refSeedlistID = refSeedlistID;
 	}
 

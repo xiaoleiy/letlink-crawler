@@ -6,20 +6,20 @@ public class Crawler implements Serializable{
 	
 	private static final long serialVersionUID = -2901482082211521383L;
 	private String name;
-	private int crawlerID;
-	private int refDomainID;
+	private long crawlerID;
+	private long refDomainID;
 	private int refCronID;
-	private int maxBytesDownload;
-	private int maxImagesDownload;
-	private int maxTimeSec;
+	private long maxBytesDownload;
+	private long maxImagesDownload;
+	private long maxTimeSec;
 	private int maxThreads;
 	private boolean isActiviated;
 	private String comment;
 	
 	public Crawler(){}
 
-	public Crawler(String name, int refDomainID, int refCronID,
-			int maxBytesDownload, int maxImagesDownload, int maxTimeSec,
+	public Crawler(String name, long refDomainID, int refCronID,
+			long maxBytesDownload, long maxImagesDownload, long maxTimeSec,
 			int maxThreads, boolean isActiviated, String comment) {
 		super();
 		this.name = name;
@@ -41,19 +41,19 @@ public class Crawler implements Serializable{
 		this.name = name;
 	}
 
-	public int getCrawlerID() {
+	public long getCrawlerID() {
 		return crawlerID;
 	}
 
-	public void setCrawlerID(int crawlerID) {
+	public void setCrawlerID(long crawlerID) {
 		this.crawlerID = crawlerID;
 	}
 
-	public int getRefDomainID() {
+	public long getRefDomainID() {
 		return refDomainID;
 	}
 
-	public void setRefDomainID(int refDomainID) {
+	public void setRefDomainID(long refDomainID) {
 		this.refDomainID = refDomainID;
 	}
 
@@ -65,27 +65,27 @@ public class Crawler implements Serializable{
 		this.refCronID = refCronID;
 	}
 
-	public int getMaxBytesDownload() {
+	public long getMaxBytesDownload() {
 		return maxBytesDownload;
 	}
 
-	public void setMaxBytesDownload(int maxBytesDownload) {
+	public void setMaxBytesDownload(long maxBytesDownload) {
 		this.maxBytesDownload = maxBytesDownload;
 	}
 
-	public int getMaxImagesDownload() {
+	public long getMaxImagesDownload() {
 		return maxImagesDownload;
 	}
 
-	public void setMaxImagesDownload(int maxImagesDownload) {
+	public void setMaxImagesDownload(long maxImagesDownload) {
 		this.maxImagesDownload = maxImagesDownload;
 	}
 
-	public int getMaxTimeSec() {
+	public long getMaxTimeSec() {
 		return maxTimeSec;
 	}
 
-	public void setMaxTimeSec(int maxTimeSec) {
+	public void setMaxTimeSec(long maxTimeSec) {
 		this.maxTimeSec = maxTimeSec;
 	}
 

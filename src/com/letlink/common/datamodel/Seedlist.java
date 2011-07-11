@@ -5,15 +5,15 @@ import java.io.Serializable;
 public class Seedlist implements Serializable {
 	
 	private static final long serialVersionUID = 7266884250842239280L;
-	private int seedlistID;
-	private int refDomainID;
+	private long seedlistID;
+	private long refDomainID;
 	private String name;
 	private String seeds;
 	private String comment;
 	
 	public Seedlist(){}
 
-	public Seedlist(String name, int refDomainID, String seeds, String comment) {
+	public Seedlist(String name, long refDomainID, String seeds, String comment) {
 		super();
 		this.name = name;
 		this.refDomainID = refDomainID;
@@ -21,11 +21,11 @@ public class Seedlist implements Serializable {
 		this.comment = comment;
 	}
 
-	public int getSeedlistID() {
+	public long getSeedlistID() {
 		return seedlistID;
 	}
 
-	public void setSeedlistID(int seedlistID) {
+	public void setSeedlistID(long seedlistID) {
 		this.seedlistID = seedlistID;
 	}
 
@@ -37,11 +37,11 @@ public class Seedlist implements Serializable {
 		this.name = name;
 	}
 
-	public int getRefDomainID() {
+	public long getRefDomainID() {
 		return refDomainID;
 	}
 
-	public void setRefDomainID(int refDomainID) {
+	public void setRefDomainID(long refDomainID) {
 		this.refDomainID = refDomainID;
 	}
 

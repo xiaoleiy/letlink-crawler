@@ -5,15 +5,15 @@ import java.io.Serializable;
 public class ExcludedURL implements Serializable{
 	
 	private static final long serialVersionUID = 7271062125534220132L;
-	private int excludedURLID;
-	private String name;
-	private int refDomainID;
+	private long excludedURLID;
+	private long refDomainID;
 	private boolean isActive;
+	private String name;
 	private String comment;
 	
 	public ExcludedURL(){}
 	
-	public ExcludedURL(String name, int refDomainID, boolean isActive,
+	public ExcludedURL(String name, long refDomainID, boolean isActive,
 			String comment) {
 		super();
 		this.name = name;
@@ -22,11 +22,11 @@ public class ExcludedURL implements Serializable{
 		this.comment = comment;
 	}
 
-	public int getExcludedURLID() {
+	public long getExcludedURLID() {
 		return excludedURLID;
 	}
 
-	public void setExcludedURLID(int excludedURLID) {
+	public void setExcludedURLID(long excludedURLID) {
 		this.excludedURLID = excludedURLID;
 	}
 
@@ -38,11 +38,11 @@ public class ExcludedURL implements Serializable{
 		this.name = name;
 	}
 
-	public int getRefDomainID() {
+	public long getRefDomainID() {
 		return refDomainID;
 	}
 
-	public void setRefDomainID(int refDomainID) {
+	public void setRefDomainID(long refDomainID) {
 		this.refDomainID = refDomainID;
 	}
 
