@@ -51,8 +51,8 @@ create index domains_alias_idx on domains(alias);
 -- -----------------------------------------------------------------------------
 -- Note: This table contains the owner information on domains
 create table domain_ownerinfo (
-    ownerinfo_id bigint unsigned not null primary key,
-    ref_domain_id bigint unsigned not null,	#-- FK to domains(domain_id)	
+    ownerinfo_id bigint not null primary key,
+    ref_domain_id bigint not null,	#-- FK to domains(domain_id)	
     created_date datetime not null,
     info varchar(1024) not null 			#-- actual owner info, e.g., WHOIS information
 );
@@ -61,9 +61,9 @@ create index ownerinfo_domainid_idx on domain_ownerinfo(ref_domain_id);
 
 -- -----------------------------------------------------------------------------
 create table if not exists excluded_urls(
-	excludedurl_id int unsigned not null auto_increment primary key,
+	excludedurl_id bigint not null auto_increment primary key,
 	name varchar(255) not null,
-	ref_domain_id int unsigned not null,	# Foreign key to domain (domain_id)
+	ref_domain_id bigint not null,		# Foreign key to domain (domain_id)
 	isActive boolean not null default false,
 	comment varchar(512)				# TODO: add alert on text length limit in web page
 );
@@ -75,10 +75,10 @@ create index excludedurls_domainid_idx on excluded_urls (ref_domain_id);
  * Seedlist
  * */
 create table if not exists seedlist(
-	seedlist_id int unsigned not null auto_increment primary key,
+	seedlist_id bigint not null auto_increment primary key,
 	name varchar(255) not null,
-	ref_domain_id int not null, 			# Foreign key to domain (domain_id), the domain that seedlist belongs to
-	seeds mediumtext not null, 			# max bytes: 2^24
+	ref_domain_id bigint not null, 			# Foreign key to domain (domain_id), the domain that seedlist belongs to
+	seeds mediumtext not null, 				# max bytes: 2^24
 	comment varchar(512)
 );
 
@@ -124,14 +124,14 @@ insert into crons(name, minute, hour, dom, month, dow, repeats, comment)
  * Crawlers
  * */
 create table if not exists crawlers(
-	crawler_id int unsigned not null auto_increment primary key,
+	crawler_id bigint not null auto_increment primary key,
 	name varchar(255) not null unique,
-	ref_domain_id int unsigned not null,	#-- FK to domains (domain_id). TODO: to confirm this field.
+	ref_domain_id bigint not null,	#-- FK to domains (domain_id). TODO: to confirm this field.
 	ref_cron_id int unsigned not null,		#-- FK to crons (cron_id). 
-	max_bytes_download int unsigned,			
-	max_images_download int unsigned,
-	max_time_sec int unsigned,
-	max_threads int unsigned,
+	max_bytes_download bigint,			
+	max_images_download bigint,
+	max_time_sec bigint,
+	max_threads int,
 	isActiviated boolean not null default false,
 	comment varchar(512)
 );
@@ -141,14 +141,14 @@ create index crawlers_name_idx on crawlers(name);
 -- -----------------------------------------------------------------------------
 -- Description:  This table contains historical information about domains
 create table historyinfo (
-    historyinfo_id int unsigned not null primary key,
+    historyinfo_id bigint not null primary key,
     stopreason int not null,        		#-- Reason for stopping is defined and documented in StopReason.java
-    objectcount int unsigned not null,    	#-- Count of collected objects
-    bytecount int unsigned not null,      	#-- Count of collected bytes
-    ref_crawler_id int unsigned not null,   #-- Identification of harvest the
+    objectcount bigint not null,    	#-- Count of collected objects
+    bytecount bigint not null,      	#-- Count of collected bytes
+    ref_crawler_id bigint not null,   #-- Identification of harvest the
                                     		#--+  information origins from - must be the
                                     		#--+  same as the one given via the jobs table
-    ref_job_id int unsigned,                  	#-- Identification of job the information origins from
+    ref_job_id bigint,                  	#-- Identification of job the information origins from
     crawled_date timestamp not null 		#-- Time when the harvest was done
 );
 
@@ -161,24 +161,24 @@ create index historyinfo_jobid_crawlerid_idx on historyinfo (ref_job_id, ref_cra
  * Jobs
  * */
 create table if not exists jobs(
-	job_id int unsigned not null auto_increment primary key,
+	job_id bigint not null auto_increment primary key,
 	name varchar(255) not null,
 	priority int default 0, 				#-- Job priority where valid values are defined in JobPriority.java
 	status varchar(20) not null,			#-- Job status where valid values are defined in JobStatus.java
-	ref_crawler_id int unsigned not null,	#-- FK to cralwers (cralwer_id)
-	ref_seedlist_id int not null,			#-- FK to seedlist (seedlist_id)
+	ref_crawler_id bigint not null,	#-- FK to cralwers (cralwer_id)
+	ref_seedlist_id bigint not null,			#-- FK to seedlist (seedlist_id)
 	submit_date datetime not null,
 	start_date datetime not null,
 	end_date datetime,
-    forcemaxbytes int unsigned,				#-- null for no max download bytes limit defined
-    forcemaxcount int unsigned,
-    forcemaxrunningtime int unsigned not null default 0,
+    forcemaxbytes bigint not null default -1,				#-- null for no max download bytes limit defined
+    forcemaxcount bigint,
+    forcemaxrunningtime bigint not null default 0,
     crawling_num int unsigned not null,
     crawling_errors varchar(255),
     crawling_error_details varchar(4096),
     upload_errors varchar(255),
     upload_error_details varchar(4096),
-    resubmitted_as_job int unsigned,
+    resubmitted_as_job bigint,
     alt_col01 varchar(255),
     alt_col03 varchar(255),
     alt_col02 int,
@@ -193,14 +193,14 @@ create index jobs_status_idx on jobs(status);
  * Images
  * */
 create table if not exists imageinfo(
-	imageinfo_id int unsigned not null auto_increment primary key,
+	imageinfo_id bigint not null auto_increment primary key,
 	filename varchar(255) not null,			#-- raw filename, included as last part of image url
 	storage_path varchar(2048) not null,	#-- filepath in FTP server
 	image_url varchar(2048) not null,
 	page_url varchar(2048) not null,
-	pixels_width int,
-	pixels_height int,
-	size_bytes int unsigned,
+	pixels_width bigint,
+	pixels_height bigint,
+	size_bytes bigint,
 	file_format varchar(32)
 );
 
@@ -208,11 +208,11 @@ create index imageinfo_filename_idx on imageinfo(filename);
 
 -- -----------------------------------------------------------------------------
 create table if not exists imagestat(
-	imagestat_id int unsigned not null, 	#-- FK to imageinfo(imageinfo_id)
-	ref_crawler_id int unsigned not null,	#-- FK to crawlers(crawler_id)
-	ref_job_id int unsigned not null, 		#-- FK to jobs(job_id)
-	ref_domain_id int unsigned,				#-- FK to domains(domain_id). Note: in case of deep-link crawling, this field may be inserted as null
-	ref_seedlist_id int unsigned, 			#-- FK to seedlist(seedlist_id)
+	imagestat_id bigint not null, 	#-- FK to imageinfo(imageinfo_id)
+	ref_crawler_id bigint not null,	#-- FK to crawlers(crawler_id)
+	ref_job_id bigint not null, 		#-- FK to jobs(job_id)
+	ref_domain_id bigint,				#-- FK to domains(domain_id). Note: in case of deep-link crawling, this field may be inserted as null
+	ref_seedlist_id bigint, 			#-- FK to seedlist(seedlist_id)
 	crawled_date datetime					#-- date when this record of image was crawled  
 );
 

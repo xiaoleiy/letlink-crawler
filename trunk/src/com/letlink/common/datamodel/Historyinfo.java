@@ -6,18 +6,18 @@ import java.sql.Timestamp;
 public class Historyinfo implements Serializable{
 
 	private static final long serialVersionUID = -5754859669338688192L;
-	private int historyinfoID;
+	private long historyinfoID;
 	private int stopreason; //Refer to StopReason.java for valid reason code.
-	private int objectcount;
-	private int bytecount;
-	private int refCrawlerID;
-	private int refJobID;
+	private long objectcount;
+	private long bytecount;
+	private long refCrawlerID;
+	private long refJobID;
 	private Timestamp crawledDate;
 	
 	public Historyinfo(){}
 
-	public Historyinfo(int stopreason, int objectcount, int bytecount,
-			int refCrawlerID, int refJobID, Timestamp crawledDate) {
+	public Historyinfo(int stopreason, long objectcount, long bytecount,
+			long refCrawlerID, long refJobID, Timestamp crawledDate) {
 		super();
 		this.stopreason = stopreason;
 		this.objectcount = objectcount;
@@ -27,11 +27,11 @@ public class Historyinfo implements Serializable{
 		this.crawledDate = crawledDate;
 	}
 
-	public int getHistoryinfoID() {
+	public long getHistoryinfoID() {
 		return historyinfoID;
 	}
 
-	public void setHistoryinfoID(int historyinfoID) {
+	public void setHistoryinfoID(long historyinfoID) {
 		this.historyinfoID = historyinfoID;
 	}
 
@@ -43,35 +43,35 @@ public class Historyinfo implements Serializable{
 		this.stopreason = stopreason;
 	}
 
-	public int getObjectcount() {
+	public long getObjectcount() {
 		return objectcount;
 	}
 
-	public void setObjectcount(int objectcount) {
+	public void setObjectcount(long objectcount) {
 		this.objectcount = objectcount;
 	}
 
-	public int getBytecount() {
+	public long getBytecount() {
 		return bytecount;
 	}
 
-	public void setBytecount(int bytecount) {
+	public void setBytecount(long bytecount) {
 		this.bytecount = bytecount;
 	}
 
-	public int getRefCrawlerID() {
+	public long getRefCrawlerID() {
 		return refCrawlerID;
 	}
 
-	public void setRefCrawlerID(int refCrawlerID) {
+	public void setRefCrawlerID(long refCrawlerID) {
 		this.refCrawlerID = refCrawlerID;
 	}
 
-	public int getRefJobID() {
+	public long getRefJobID() {
 		return refJobID;
 	}
 
-	public void setRefJobID(int refJobID) {
+	public void setRefJobID(long refJobID) {
 		this.refJobID = refJobID;
 	}
 
