@@ -37,7 +37,7 @@ insert into domain_category values(-1, "default",
 
 -- -----------------------------------------------------------------------------
 create table if not exists domains(
-	domain_id int unsigned not null auto_increment primary key,
+	domain_id bigint not null auto_increment primary key,
 	name varchar(255) not null unique,
 	alias varchar(255) unique,
 	ref_category_id int not null default -1,	# Foreign key to domain_category (id)
@@ -50,14 +50,14 @@ create index domains_alias_idx on domains(alias);
 
 -- -----------------------------------------------------------------------------
 -- Note: This table contains the owner information on domains
-create table ownerinfo (
-    ownerinfo_id int unsigned not null primary key,
-    ref_domain_id int unsigned not null,	#-- FK to domains(domain_id)	
-    created_time datetime not null,
+create table domain_ownerinfo (
+    ownerinfo_id bigint unsigned not null primary key,
+    ref_domain_id bigint unsigned not null,	#-- FK to domains(domain_id)	
+    created_date datetime not null,
     info varchar(1024) not null 			#-- actual owner info, e.g., WHOIS information
 );
 
-create index ownerinfo_domainid_idx on ownerinfo(ref_domain_id);
+create index ownerinfo_domainid_idx on domain_ownerinfo(ref_domain_id);
 
 -- -----------------------------------------------------------------------------
 create table if not exists excluded_urls(
@@ -149,7 +149,7 @@ create table historyinfo (
                                     		#--+  information origins from - must be the
                                     		#--+  same as the one given via the jobs table
     ref_job_id int unsigned,                  	#-- Identification of job the information origins from
-    crawled_time timestamp not null 		#-- Time when the harvest was done
+    crawled_date timestamp not null 		#-- Time when the harvest was done
 );
 
 create index historyinfo_crawlerid_idx on historyinfo (ref_crawler_id);
