@@ -2,3 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<mapper namespace="com.letlink.webinterface.datamapper.DomainMapper">
+	<sql id="full_cols">domain_id, name, alias, isCrawling, comment</sql>
+	
+</mapper>

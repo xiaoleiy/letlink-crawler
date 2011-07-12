@@ -2,13 +2,10 @@ package com.letlink.common.datamodel;
 
 import java.io.Serializable;
 
-import com.letlink.common.Constants;
-
 public class Domain implements Serializable{
 
 	private static final long serialVersionUID = -5771803185806088481L;
 	private long domainID;
-	private int refCategoryID;
 	private String name;
 	private String alias;
 	private String comment;
@@ -18,16 +15,13 @@ public class Domain implements Serializable{
 	
 	public Domain(String name){
 		this.alias = name;
-		this.refCategoryID = Constants.DEFAULT_DOMAIN_CATEGORY;
 		this.isCrawling = false;
 	}
 	
-	public Domain(String name, String alias,
-			int refCategoryID, boolean isCrawling, String comment) {
+	public Domain(String name, String alias, boolean isCrawling, String comment) {
 		super();
 		this.name = name;
 		this.alias = alias;
-		this.refCategoryID = refCategoryID;
 		this.isCrawling = isCrawling;
 		this.comment = comment;
 	}
@@ -49,12 +43,6 @@ public class Domain implements Serializable{
 	}
 	public void setAlias(String alias) {
 		this.alias = alias;
-	}
-	public int getRefCategoryID() {
-		return refCategoryID;
-	}
-	public void setRefCategoryID(int refCategoryID) {
-		this.refCategoryID = refCategoryID;
 	}
 	public boolean isCrawling() {
 		return isCrawling;

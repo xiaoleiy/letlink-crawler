@@ -3,7 +3,7 @@ package com.letlink.common.datamodel;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class DomainOwnerInfo implements Serializable{
+public class OwnerInfo implements Serializable{
 	
 	private static final long serialVersionUID = -3726976587476049210L;
 	private long ownerinfoID;
@@ -11,9 +11,9 @@ public class DomainOwnerInfo implements Serializable{
 	private Timestamp createdDate;
 	private String info;
 	
-	public DomainOwnerInfo(){}
+	public OwnerInfo(){}
 	
-	public DomainOwnerInfo(long refDomainID, Timestamp createdDate,
+	public OwnerInfo(long refDomainID, Timestamp createdDate,
 			String info) {
 		super();
 		this.refDomainID = refDomainID;
