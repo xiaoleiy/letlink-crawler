@@ -1,99 +1,97 @@
 package com.letlink.common.datamodel;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 public class Imageinfo implements Serializable {
 
-	private static final long serialVersionUID = 2554670667148601075L;
-	private long imageinfoID;
-	private String filename;
-	private String fileFormat;
-	private String imageURL;
-	private String pageURL;
-	private long pixelsWidth;
-	private long pixelsHeight;
-	private long sizeBytes;
+	private static final long serialVersionUID = 7470344393781184564L;
+	private long imagespecID;
+	private long refCrawlerID;
+	private long refJobID;
+	private long refDomainID;
+	private long refSeedlistID;
+	private int crawleStatus;
+	private int uploadStatus;
+	private Timestamp crawledDate;
 	
 	public Imageinfo(){}
 
-	public Imageinfo(String filename, String fileFormat, String imageURL,
-			String pageURL, int pixelsWidth, int pixelsHeight, long sizeBytes) {
+	public Imageinfo(long refCrawlerID, long refJobID, long refDomainID,
+			long refSeedlistID, Timestamp crawledDate) {
 		super();
-		this.filename = filename;
-		this.fileFormat = fileFormat;
-		this.imageURL = imageURL;
-		this.pageURL = pageURL;
-		this.pixelsWidth = pixelsWidth;
-		this.pixelsHeight = pixelsHeight;
-		this.sizeBytes = sizeBytes;
+		this.refCrawlerID = refCrawlerID;
+		this.refJobID = refJobID;
+		this.refDomainID = refDomainID;
+		this.refSeedlistID = refSeedlistID;
+		this.crawledDate = crawledDate;
 	}
 
-	public long getImageinfoID() {
-		return imageinfoID;
+	public long getImagespecID() {
+		return imagespecID;
 	}
 
-	public void setImageinfoID(long imageinfoID) {
-		this.imageinfoID = imageinfoID;
+	public void setImagespecID(long imagespecID) {
+		this.imagespecID = imagespecID;
 	}
 
-	public String getFilename() {
-		return filename;
+	public long getRefCrawlerID() {
+		return refCrawlerID;
 	}
 
-	public void setFilename(String filename) {
-		this.filename = filename;
+	public void setRefCrawlerID(long refCrawlerID) {
+		this.refCrawlerID = refCrawlerID;
 	}
 
-	public String getFileFormat() {
-		return fileFormat;
+	public long getRefJobID() {
+		return refJobID;
 	}
 
-	public void setFileFormat(String fileFormat) {
-		this.fileFormat = fileFormat;
+	public void setRefJobID(long refJobID) {
+		this.refJobID = refJobID;
 	}
 
-	public String getImageURL() {
-		return imageURL;
+	public long getRefDomainID() {
+		return refDomainID;
 	}
 
-	public void setImageURL(String imageURL) {
-		this.imageURL = imageURL;
+	public void setRefDomainID(long refDomainID) {
+		this.refDomainID = refDomainID;
 	}
 
-	public String getPageURL() {
-		return pageURL;
+	public long getRefSeedlistID() {
+		return refSeedlistID;
 	}
 
-	public void setPageURL(String pageURL) {
-		this.pageURL = pageURL;
+	public void setRefSeedlistID(long refSeedlistID) {
+		this.refSeedlistID = refSeedlistID;
 	}
 
-	public long getPixelsWidth() {
-		return pixelsWidth;
+	public Timestamp getCrawledDate() {
+		return crawledDate;
 	}
 
-	public void setPixelsWidth(long pixelsWidth) {
-		this.pixelsWidth = pixelsWidth;
-	}
-
-	public long getPixelsHeight() {
-		return pixelsHeight;
-	}
-
-	public void setPixelsHeight(long pixelsHeight) {
-		this.pixelsHeight = pixelsHeight;
-	}
-
-	public long getSizeBytes() {
-		return sizeBytes;
-	}
-
-	public void setSizeBytes(long sizeBytes) {
-		this.sizeBytes = sizeBytes;
+	public void setCrawledDate(Timestamp crawledDate) {
+		this.crawledDate = crawledDate;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
+	public int getCrawleStatus() {
+		return crawleStatus;
+	}
+
+	public void setCrawleStatus(int crawleStatus) {
+		this.crawleStatus = crawleStatus;
+	}
+
+	public int getUploadStatus() {
+		return uploadStatus;
+	}
+
+	public void setUploadStatus(int uploadStatus) {
+		this.uploadStatus = uploadStatus;
+	}
 }

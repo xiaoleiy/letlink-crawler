@@ -17,7 +17,7 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias alias="DomainCategory" type="com.letlink.common.datamodel.DomainCategory"/>
+		<typeAlias alias="Category" type="com.letlink.common.datamodel.Category"/>
 		<typeAlias alias="Domain" type="com.letlink.common.datamodel.Domain"/>
 	</typeAliases>
 	

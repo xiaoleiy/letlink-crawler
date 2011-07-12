@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.letlink.webinterface.datamapper.DomainCategoryMapper">
+
+	<sql id="full_cols">domaincategory_id, name, comment</sql>
+	<resultMap type="Category" id="categoryResultMap">
+		<id property="categoryID" column="category_id"/>
+		<result property="name" column="name"/>
+		<result property="comment" column="comment"/>
+	</resultMap>
+	
+	<insert id="insert" parameterType="DomainCategory" flushCache="true">
+		INSERT INTO category(name, comment) VALUES(#{name}, #{comment})
+	</insert>
+	
+	<select id="selectById" parameterType="int" resultMap="categoryResultMap" useCache="true" statementType="PREPARED">
+		SELECT <include refid="full_cols" /> FROM category WHERE category_id = #{id}
+	</select>
+	<select id="selectByName" parameterType="String" resultMap="categoryResultttMap" useCache="true" statementType="PREPARED">
+		SELECT <include refid="full_cols" /> FROM category WHERE name = #{name}
+	</select>
+	<!-- Select inserted/updated/deleted rows count. 
+		 Note: called in the same transaction as the insert/update/delete calls. -->
+	<select id="selectRowCount" resultType="int">
+		SELECT ROW_COUNT();
+	</select>
+	
+	<update id="update" parameterType="DomainCategory" flushCache="true" statementType="PREPARED">
+		UPDATE category SET name = #{name}, comment = #{comment} WHERE category_id = #{categoryID}
+	</update>
+	
+	<delete id="delete" parameterType="int" flushCache="true">
+		DELETE FROM category where category_id = #{id}
+	</delete>
+	
+</mapper>

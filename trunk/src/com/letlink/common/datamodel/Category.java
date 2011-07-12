@@ -2,7 +2,7 @@ package com.letlink.common.datamodel;
 
 import java.io.Serializable;
 
-public class DomainCategory implements Serializable{
+public class Category implements Serializable{
 
 	private static final long serialVersionUID = -3263975403117354106L;
 	private int categoryID;
