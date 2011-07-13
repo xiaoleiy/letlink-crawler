@@ -4,14 +4,46 @@
 
 <mapper namespace="com.letlink.webinterface.datamapper.DomainMapper">
 	<sql id="full_cols">domain_id, name, alias, isCrawling, comment</sql>
+	<sql id="no_id_cols">name, alias, isCrawling, comment</sql>
 	<resultMap type="Domain" id="domainResultMap">
 		<id property="domainID" column="domain_id"/>
 		<result property="name" column="name"/>
 		<result property="alias" column="alias"/>
-		<result property="comment" column="comment"/>
 		<result property="isCrawling" column="isCrawling"/>
+		<result property="comment" column="comment"/>
 	</resultMap>
+
+	<insert id="insert" parameterType="Domain" useGeneratedKeys="true" keyProperty="domainID">
+		INSERT INTO domains(<include refid="no_id_cols"/>)
+		VALUES(#{name}, #{alias}, #{isCrawling, jdbcType=BOOLEAN}, #{comment})
+	</insert>
 	
+	<select id="selectById" parameterType="int" resultType="Domain">
+		SELECT <include refid="full_cols"/> FROM domains WHERE domain_id = #{id}
+	</select>
+	<select id="selectByName" parameterType="String" resultType="Domain">
+		SELECT <include refid="full_cols"/> FROM domains WHERE name = #{name}
+	</select>
+	<select id="selectAllCrawling" parameterType="boolean" resultType="Domain">
+		SELECT <include refid="full_cols"/>
+		FROM domains
+		WHERE isCrawling = #{isCrawling, jdbcType=BOOLEAN}
+	</select>
+	<select id="selectAllByCategory" parameterType="int" resultType="Domain">
+		SELECT <include refid="full_cols"/>
+		FROM domains A, category_domains B
+		WHERE A.domain_id = B.domain_id
+		AND B.category_id = #{id}
+	</select>
 	
+	<update id="update" parameterType="Domain" flushCache="true">
+		UPDATE domains
+		SET name = #{name}, alias = #{alias}, isCrawling = #{isCrawling}, comment = #{comment}
+		WHERE domain_id = #{domainID}
+	</update>
+	
+	<delete id="delete" parameterType="int" flushCache="true">
+		DELETE FROM domains WHERE domain_id = #{domainID}
+	</delete>
 	
 </mapper>

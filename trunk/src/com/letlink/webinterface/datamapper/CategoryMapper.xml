@@ -4,35 +4,30 @@
 
 <mapper namespace="com.letlink.webinterface.datamapper.DomainCategoryMapper">
 
-	<sql id="full_cols">domaincategory_id, name, comment</sql>
+	<sql id="full_cols">category_id, name, comment</sql>
 	<resultMap type="Category" id="categoryResultMap">
 		<id property="categoryID" column="category_id"/>
 		<result property="name" column="name"/>
 		<result property="comment" column="comment"/>
 	</resultMap>
 	
-	<insert id="insert" parameterType="DomainCategory" flushCache="true">
+	<insert id="insert" parameterType="DomainCategory" flushCache="true" useGeneratedKeys="true" keyProperty="categoryID">
 		INSERT INTO category(name, comment) VALUES(#{name}, #{comment})
 	</insert>
 	
-	<select id="selectById" parameterType="int" resultMap="categoryResultMap" useCache="true" statementType="PREPARED">
+	<select id="selectById" parameterType="int" resultMap="categoryResultMap" useCache="true">
 		SELECT <include refid="full_cols" /> FROM category WHERE category_id = #{id}
 	</select>
-	<select id="selectByName" parameterType="String" resultMap="categoryResultttMap" useCache="true" statementType="PREPARED">
+	<select id="selectByName" parameterType="String" resultMap="categoryResultttMap" useCache="true">
 		SELECT <include refid="full_cols" /> FROM category WHERE name = #{name}
 	</select>
-	<!-- Select inserted/updated/deleted rows count. 
-		 Note: called in the same transaction as the insert/update/delete calls. -->
-	<select id="selectRowCount" resultType="int">
-		SELECT ROW_COUNT();
-	</select>
 	
-	<update id="update" parameterType="DomainCategory" flushCache="true" statementType="PREPARED">
+	<update id="update" parameterType="DomainCategory" flushCache="true">
 		UPDATE category SET name = #{name}, comment = #{comment} WHERE category_id = #{categoryID}
 	</update>
 	
 	<delete id="delete" parameterType="int" flushCache="true">
-		DELETE FROM category where category_id = #{id}
+		DELETE FROM category WHERE category_id = #{id}
 	</delete>
 	
 </mapper>
