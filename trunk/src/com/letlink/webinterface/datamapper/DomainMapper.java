@@ -5,9 +5,9 @@ import java.util.List;
 import com.letlink.common.datamodel.Domain;
 
 public interface DomainMapper {
-	public int insert();
+	public int insert(Domain domain);
 	public Domain selectById(long id);
-	public Domain selectByName(int name);
+	public Domain selectByName(String name);
 	public List<Domain> selectAllCrawling(boolean isCrawling);
 	public List<Domain> selectAllByCategory(int categoryID);
 	public int update(Domain domain);

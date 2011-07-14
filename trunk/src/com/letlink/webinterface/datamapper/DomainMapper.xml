@@ -18,7 +18,7 @@
 		VALUES(#{name}, #{alias}, #{isCrawling, jdbcType=BOOLEAN}, #{comment})
 	</insert>
 	
-	<select id="selectById" parameterType="int" resultType="Domain">
+	<select id="selectById" parameterType="long" resultType="Domain">
 		SELECT <include refid="full_cols"/> FROM domains WHERE domain_id = #{id}
 	</select>
 	<select id="selectByName" parameterType="String" resultType="Domain">
@@ -42,7 +42,7 @@
 		WHERE domain_id = #{domainID}
 	</update>
 	
-	<delete id="delete" parameterType="int" flushCache="true">
+	<delete id="delete" parameterType="long" flushCache="true">
 		DELETE FROM domains WHERE domain_id = #{domainID}
 	</delete>
 	
