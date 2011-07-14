@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.letlink.webinterface.datamapper.DomainCategoryMapper">
+<mapper namespace="com.letlink.webinterface.datamapper.CategoryMapper">
 
 	<sql id="full_cols">category_id, name, comment</sql>
 	<resultMap type="Category" id="categoryResultMap">
@@ -11,18 +11,18 @@
 		<result property="comment" column="comment"/>
 	</resultMap>
 	
-	<insert id="insert" parameterType="DomainCategory" flushCache="true" useGeneratedKeys="true" keyProperty="categoryID">
+	<insert id="insert" parameterType="Category" flushCache="true" useGeneratedKeys="true" keyProperty="categoryID">
 		INSERT INTO category(name, comment) VALUES(#{name}, #{comment})
 	</insert>
 	
 	<select id="selectById" parameterType="int" resultMap="categoryResultMap" useCache="true">
 		SELECT <include refid="full_cols" /> FROM category WHERE category_id = #{id}
 	</select>
-	<select id="selectByName" parameterType="String" resultMap="categoryResultttMap" useCache="true">
+	<select id="selectByName" parameterType="String" resultMap="categoryResultMap" useCache="true">
 		SELECT <include refid="full_cols" /> FROM category WHERE name = #{name}
 	</select>
 	
-	<update id="update" parameterType="DomainCategory" flushCache="true">
+	<update id="update" parameterType="Category" flushCache="true">
 		UPDATE category SET name = #{name}, comment = #{comment} WHERE category_id = #{categoryID}
 	</update>
 	

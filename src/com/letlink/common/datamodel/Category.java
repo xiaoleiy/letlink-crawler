@@ -9,6 +9,13 @@ public class Category implements Serializable{
 	private String name;
 	private String comment;
 	
+	public Category(){}
+	
+	public Category(String name, String comment){
+		this.name = name;
+		this.comment = comment;
+	}
+	
 	public int getCategoryID() {
 		return categoryID;
 	}

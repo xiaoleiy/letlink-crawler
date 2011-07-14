@@ -4,7 +4,7 @@
 
 <!-- need to keep the sequence of subtags from properties to mappers -->
 <configuration>
-	<properties resource="dbconfig.properties">
+	<properties resource="properties/dbconfig.properties">
 		<property name="driver" value="com.mysql.jdbc.Driver"/>
 	</properties>
 	
@@ -67,7 +67,7 @@
 	</environments>
 	
 	<mappers>
-		<mapper resource="com/letlink/webinterface/datamapper/DomainCategoryMapper.xml"/>
+		<mapper resource="com/letlink/webinterface/datamapper/CategoryMapper.xml"/>
 		<mapper resource="com/letlink/webinterface/datamapper/DomainMapper.xml"/>
 	</mappers>
 </configuration>
