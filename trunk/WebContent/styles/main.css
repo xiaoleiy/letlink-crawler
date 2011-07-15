@@ -126,7 +126,7 @@ body {
 }
 
 /*-------------------- login --------------------*/
-form#login_form {
+form {
 	float: center;
 }
 
@@ -135,6 +135,12 @@ label.basic_label {
 }
 
 label.input_tip {
+	font-size: 0.6em;
+	font-color: #D3D3D3;
+	line-height: 60%;
+}
+
+label.error_tip {
 	display: none;
 	color: red;
 }
