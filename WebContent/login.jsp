@@ -21,16 +21,16 @@
 </head>
 <body bgcolor="#CCCCCC">
 <div>
-	<form id="login_form" name="login_form" action="login" method="POST" onsubmit="return validate()">
+	<form id="login_form" name="login_form" action="login" method="POST" onsubmit="return validate_login()">
 		<div class="login_input">
 			<label class="basic_label">Username:&nbsp;</label>
 			<input id="login_username" class="basic_input" name="username" type="text" maxlength="20" tabindex="1" />
-			<label id="username_tip" class="input_tip">&nbsp;Please type your username</label>
+			<label id="username_tip" class="error_tip">&nbsp;Please type your username</label>
 		</div>
 		<div class="login_input">
 			<label class="basic_label">Password:&nbsp;</label>
 			<input id="login_password" class="basic_input" name="password" type="password" maxlength="20" tabindex="2" />
-			<label id="password_tip" class="input_tip">&nbsp;Please type your password</label>
+			<label id="password_tip" class="error_tip">&nbsp;Please type your password</label>
 		</div>
 		<input name="from_url" type="hidden" value="<%=from_url %>" />
 		<div class="login_submit">

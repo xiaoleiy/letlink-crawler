@@ -39,6 +39,29 @@
 			
 		</table>
 	</div>
+	
+	<div>
+		<form id="add_domain_form" name="add_domain_form" action="addDomain" method="POST" onsubmit="return validate_adddomain()">
+			<div>
+				<label class="basic_label">Domain Name:&nbsp;</label>
+				<input id="domain_name" type="text" class="basic_input" name="domain_name" maxlength="150" tabindex="1"/>
+				<label id="domain_name_tip" class="basic_tip">Please type domain name, e.g., letlink.com</label>
+			</div>
+			<div>
+				<label class="basic_label">Domain Alias:&nbsp;</label>
+				<input id="domain_alias" type="text" class="basic_input" name="domain_alias" maxlength="150" tabindex="2" />
+				<label id="domain_alias_tip" class="basic_tip">Please type domain alias, e.g., Letlink</label>
+			</div>
+			<div>
+				<label class="basic_label">Comment:&nbsp;</label>
+				<textarea id="domain_comment" name="domain_comment" rows="5" cols="50" tabindex="3"></textarea>
+			</div>
+			<div>
+				<input id="add_domain_submit" name="add_domain_submit" type="submit" value="Add" />
+			</div>
+		</form>
+	</div>
+	
 	<div class="footer">
 		<span>&nbsp; &copy; 2011, www.letlink.com, All rights Reserved</span>
 		<br /><span>&nbsp; Powered by <a href="http://crawler.archive.org" ><i>Heritrix Project</i></a>

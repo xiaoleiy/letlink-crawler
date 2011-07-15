@@ -28,7 +28,7 @@ function setCookie(cname, content) {
 /**
  * [login.jsp] Validate user's inputs
  * */
-function validate(){
+function validate_login(){
 	//username.get(0).value == username.attr('value') == username.val()
 	var result = true;
 	var username = $('input[name="username"]');
