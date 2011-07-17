@@ -4,29 +4,51 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
-import org.apache.struts2.interceptor.SessionAware;
-
-import com.opensymphony.xwork2.ActionContext;
+import com.google.inject.Inject;
+import com.google.inject.Provides;
+import com.google.inject.Singleton;
+import com.google.inject.servlet.RequestParameters;
+import com.google.inject.servlet.RequestScoped;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
  * Servlet implementation class Login
  */
-public class Login extends ActionSupport implements SessionAware, ServletRequestAware, ServletResponseAware{
-	private String username;
-	private String password;
-	private String from_url;
-	private String message;
-	private boolean login;
-	private Map session;
-	private HttpServletRequest request;
+@Singleton	/* Making sure singleton of servlet is important! */
+public class Login extends ActionSupport {
+	
+	private static final long serialVersionUID = -5389504761983730228L;
+	
+	/**
+	 * Injection definition(in class InternalServletModule):
+	 * 		@Provides HttpSession provideHttpSession(){
+	 * 			return GuiceFilter.getRequest().getSession();
+	 * 		}
+	 * */
+	@Inject
+	private HttpSession session;
+	
+	/**
+	 * Injection definition(in class InternalServletModule):
+	 * 		@Provides @RequestScoped HttpServletResponse provideHttpServletResponse(){
+	 * 			return GuiceFilter.getResponse();
+	 * 
+	 * 		}
+	 * */
+	@Inject
 	private HttpServletResponse response;
+	
+	/**
+	 * Injection definition(in class InternalServletModule):
+	 * 		@Provides @RequestScoped @RequestParameters Map<String, String[]> provideRequestParameters(){
+	 * 			return GuiceFilter.getRequest().getParametersMap();
+	 * 		}
+	 * */
+	@Inject @RequestParameters	private Map<String, String[]> params;
+	
 	private Logger logger = Logger.getLogger("Login");
 	
 	/**
@@ -40,12 +62,10 @@ public class Login extends ActionSupport implements SessionAware, ServletRequest
 
 	@Override
 	public String execute() throws IOException{
-		if("admin".equals(username) && "admin".equals(password)){
-			setLogin(true);
-			session.put("login_user", username);
-			session.put("logined", true);
-			setMessage("You logged into the system!");
-			response.sendRedirect(from_url);
+		if("admin".equals(getParam("username")) && "admin".equals(getParam("password"))){
+			session.setAttribute("login_user", getParam("username"));
+			session.setAttribute("logined", true);
+			response.sendRedirect(getParam("from_url"));
 			return ActionSupport.NONE;
 		}else{
 			return "LOGIN_ERR";
@@ -53,72 +73,34 @@ public class Login extends ActionSupport implements SessionAware, ServletRequest
 	}
 	
 	public String logout() throws IOException{
-		if(session.get("logined") == null || (Boolean)session.get("logined") == false 
-				|| !notEmpty((String)session.get("login_user")) ){
+		if(session.getAttribute("logined") == null || (Boolean)session.getAttribute("logined") == false 
+				|| !notEmpty((String)session.getAttribute("login_user")) ){
 			logger.warning("Not logged in!");
-		}else
-			session.clear();
-		response.sendRedirect(from_url);
+			logger.info("test");
+		}else{
+			session.removeAttribute("login_user");
+			session.removeAttribute("logined");
+		}
+		response.sendRedirect(getParam("from_url"));
 		return ActionSupport.NONE;
+	}
+	
+	public String getParam(String key){
+		if(params == null){
+			logger.severe("The params is NULL");
+			return null;
+		}
+		if(key == null || "".equals(key))
+			return null;
+		return params.get(key)[0];
 	}
 	
 	public boolean notEmpty(String str){
 		return str == null ? false : (str.length() == 0 ? false : true);
 	}
 	
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	public String getFrom_url() {
-		return from_url;
-	}
-
-	public void setFrom_url(String from_url) {
-		this.from_url = from_url;
-	}
-	
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	public boolean isLogin() {
-		return login;
-	}
-
-	public void setLogin(boolean login) {
-		this.login = login;
-	}
-
-	@Override
-	public void setServletResponse(HttpServletResponse response) {
-		this.response = response; 
-	}
-
-	@Override
-	public void setServletRequest(HttpServletRequest request) {
-		this.request = request;
-	}
-
-	@Override
-	public void setSession(Map<String, Object> session) {
-		this.session = session;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 }

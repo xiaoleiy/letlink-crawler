@@ -1,29 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>Letlink-crawler</display-name>
-  <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
 
+  <!-- Note: The elements can be in the arbitrary order.
+			 The elements being loaded by container in sequential are: 
+			 	init-param(ServletContext params) -> listener(hear context init/destory events) -> filters -> servlets
+			 You can declare multiple listeners for diff events, and they will be invoked in order of registration(appearance) here.
+			 Also for filter/servlet, you can declare multiple of them, in order of registration(appearance) of their mapping declarion here.      
+     -->
   <listener>
   	<listener-class>com.letlink.common.service.MyGuiceServletContextListener</listener-class>
   </listener>
-  <filter>
-  	<filter-name>struts2</filter-name>
-  	<filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
-  </filter>
+  
   <filter>
   	<filter-name>guice</filter-name>
   	<filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
   </filter>
-  
-  <filter-mapping>
+<!--   <filter>
   	<filter-name>struts2</filter-name>
-  	<url-pattern>/*</url-pattern>
-  </filter-mapping>
+  	<filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+  </filter> -->
+  
   <filter-mapping>
   	<filter-name>guice</filter-name>
   	<url-pattern>/*</url-pattern>
   </filter-mapping>
+<!--   <filter-mapping>
+  	<filter-name>struts2</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping> -->
+  
+  
+ <!--  <session-config>
+  	the whole number of minutes; 0 or less means never to time out the session.
+  	<session-timeout>3</session-timeout>
+  </session-config> -->
+  
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/404.jsp</location>
+  </error-page>
+  <error-page>
+  	<exception-type>java.lang.NullException</exception-type>
+  	<location>/error.jsp</location>
+  </error-page>
   
 </web-app>
