@@ -29,8 +29,7 @@ public class MyGuiceModule extends MyBatisModule {
 		addSimpleAlias(Domain.class);
 		addMapperClass(CategoryMapper.class);
 		addMapperClass(DomainMapper.class);
-		Names.bindProperties(this.binder(), getConnProperties()); //bind the jdbc connection properties
-		//this.binder().bind(StateDAO.class).to0(StateDAOImpl.class);
+		Names.bindProperties(this.binder(), getConnProperties());
 	}
 	
 	/**
@@ -40,7 +39,7 @@ public class MyGuiceModule extends MyBatisModule {
 		final Properties props = new Properties();
 		props.setProperty("mybatis.environment.id", "innodb"); //TODO: delete to test the method environmentId("innodb");
 		props.setProperty("JDBC.driver", "com.mysql.jdbc.Driver"); // why need JDBC as prefix?
-		props.setProperty("JDBC.url", "jdbc:mysql://localhost:3306/letlink_webcrawler");
+		props.setProperty("JDBC.url", "jdbc:mysql://192.168.1.130:3306/letlink_webcrawler");
 		props.setProperty("JDBC.username", "root");
 		props.setProperty("JDBC.password", "root");
 		//props.setProperty("JDBC.autoCommit", "false");
