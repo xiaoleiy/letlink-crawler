@@ -4,7 +4,7 @@
 
 <!-- need to keep the sequence of subtags from properties to mappers -->
 <configuration>
-	<properties resource="properties/dbconfig_work.properties">
+	<properties resource="properties/dbconfig_home.properties">
 		<property name="driver" value="com.mysql.jdbc.Driver"/>
 	</properties>
 	

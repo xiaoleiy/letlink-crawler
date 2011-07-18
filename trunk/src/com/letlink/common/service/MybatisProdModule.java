@@ -1,10 +1,5 @@
 package com.letlink.common.service;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
 import com.google.inject.name.Names;
@@ -18,9 +13,22 @@ import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.mybatis.guice.MyBatisModule;
 import org.mybatis.guice.datasource.builtin.PooledDataSourceProvider;
 
-public class MyGuiceModule extends MyBatisModule {
+/**
+ * @author idealab
+ * @version 1.0
+ * @description 
+ * 		MyBatis configuration class, as a Guice Module, which all properties are configured 
+ * 		by using MyBatis library, for faster instances binding.
+ * 		Recommended to be used in production stage.
+ * TODO Read db configuration properties from file with format:
+ * 			[env_id]
+ * 			url=jdbc:mysql://localhost:3306/letlink_webcrawler
+ * 			username=root
+ * 			password=root
+ * */
+public class MybatisProdModule extends MyBatisModule {
 
-	private final String dbconfigFile = "";
+	@SuppressWarnings("unused")
 	private enum DBEnv {DEV, TEST, UAT, PROD, INNO, WORK, HOME}
 	
 	@Override
@@ -35,30 +43,16 @@ public class MyGuiceModule extends MyBatisModule {
 		binder().bindConstant().annotatedWith(named("mybatis.configuration.defaultExecutorType")).to("SIMPLE");
 		addSimpleAlias(Category.class);
 		addSimpleAlias(Domain.class);
-		//The mapper classes are bound in singleton
 		addMapperClass(CategoryMapper.class);
 		addMapperClass(DomainMapper.class);
-		Names.bindProperties(this.binder(), getConnProperties(DBEnv.WORK));
+		Names.bindProperties(this.binder(), getConnProperties());
 	}
 	
-	/**
-	 * TODO: to read database properties from dbconfig.properties, and wrap the properties with given parameters: env_id, db_name 
-	 * */
-	public Properties getConnProperties(DBEnv env){
-		
+	public Properties getConnProperties(){
 		final Properties props = new Properties();
-		try {
-			props.load(new FileInputStream(dbconfigFile));
-		} catch (FileNotFoundException e) {
-			System.out.println("[ERROR] Database configuration file in " + dbconfigFile + " can NOT found!");
-			e.printStackTrace();
-		} catch (IOException e) {
-			System.out.println("[ERROR] Failed to read the database configuration file! Exception: " + e.getMessage());
-			e.printStackTrace();
-		}
-		props.setProperty("mybatis.environment.id", "innodb");
+		props.setProperty("mybatis.environment.id", "production");
 		props.setProperty("JDBC.driver", "com.mysql.jdbc.Driver"); // why need JDBC as prefix?
-		props.setProperty("JDBC.url", "jdbc:mysql://localhost:3306/letlink_webcrawler");
+		props.setProperty("JDBC.url", "jdbc:mysql://192.168.1.130:3306/letlink_webcrawler");
 		props.setProperty("JDBC.username", "root");
 		props.setProperty("JDBC.password", "root");
 		//props.setProperty("JDBC.autoCommit", "false");
