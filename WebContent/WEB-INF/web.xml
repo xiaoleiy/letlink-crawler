@@ -31,10 +31,10 @@
   </filter-mapping> -->
   
   
- <!--  <session-config>
-  	the whole number of minutes; 0 or less means never to time out the session.
+  <session-config>
+  	<!-- the whole number of minutes; 0 or less means never to time out the session. -->
   	<session-timeout>3</session-timeout>
-  </session-config> -->
+  </session-config>
   
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

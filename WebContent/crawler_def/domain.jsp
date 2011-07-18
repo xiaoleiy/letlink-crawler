@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div style="margin: 5px 0"><jsp:include page="../_menu.jsp"></jsp:include></div>
-	<div class="main">
+	<div>
 		<table>
 			<caption>Domains List</caption>
 			<thead>
@@ -41,10 +41,10 @@
 	</div>
 	
 	<div>
-		<form id="add_domain_form" name="add_domain_form" action="addDomain" method="POST" onsubmit="return validate_adddomain()">
+		<form id="add_domain_form" action="addDomain" method="POST">
 			<div>
 				<label class="basic_label">Domain Name:&nbsp;</label>
-				<input id="domain_name" type="text" class="basic_input" name="domainName" maxlength="150" tabindex="1"/>
+				<input id="domain_name" type="text" class="basic_input" name="domainName" maxlength="150" tabindex="1" />
 				<label id="domain_name_tip" class="basic_tip">Please type domain name, e.g., letlink.com</label>
 			</div>
 			<div>
@@ -54,10 +54,10 @@
 			</div>
 			<div>
 				<label class="basic_label">Comment:&nbsp;</label>
-				<textarea id="domain_comment" name="domainComment" rows="5" cols="50" tabindex="3"></textarea>
+				<textarea id="domain_comment" name="domainComment" rows="5" cols="50" tabindex="3" ></textarea>
 			</div>
 			<div>
-				<input id="add_domain_submit" name="add_domain_submit" type="submit" value="Add" />
+				<input type="submit" value="Add" />
 			</div>
 		</form>
 	</div>
