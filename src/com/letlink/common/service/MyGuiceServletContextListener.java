@@ -29,19 +29,20 @@ public class MyGuiceServletContextListener extends GuiceServletContextListener {
 						//bind(DomainServlet.class).in(Singleton.class);
 						//bind(Login.class).in(Singleton.class);
 					}
-				}, new MyGuiceModule());
+				}, new MybatisXMLModule());
 	}
 	
 	
 	public void contextInitialized(ServletContextEvent ctxEvent){
 		//TODO set context attributes
 		super.contextInitialized(ctxEvent);
-		System.out.println("");
+		System.out.println("[INFO] Servlet context initialized.");
 	}
 	
 	public void contextDestoryed(ServletContextEvent ctxEvent){
 		//TODO remove context attributes
 		super.contextDestroyed(ctxEvent);
+		System.out.println("[INFO] Servlet context destroyed.");
 	}
 
 }
