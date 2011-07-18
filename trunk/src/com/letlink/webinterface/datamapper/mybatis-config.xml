@@ -4,7 +4,7 @@
 
 <!-- need to keep the sequence of subtags from properties to mappers -->
 <configuration>
-	<properties resource="properties/dbconfig_home.properties">
+	<properties resource="properties/dbconfig.properties">
 		<property name="driver" value="com.mysql.jdbc.Driver"/>
 	</properties>
 	
@@ -35,15 +35,15 @@
 			</dataSource>
 		</environment>
 		
-		<environment id="innodb">
+		<environment id="test">
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
 				<property name="driver" value="${driver}"/>
-				<property name="url" value="${inno_url}"/>
-				<property name="username" value="${inno_username}"/>
-				<property name="password" value="${inno_password}"/>
+				<property name="url" value="${test_url}"/>
+				<property name="username" value="${test_username}"/>
+				<property name="password" value="${test_password}"/>
 			</dataSource>
-		</environment>
+		</environment>	
 		
 		<environment id="production">
 			<transactionManager type="JDBC" />
@@ -55,15 +55,25 @@
 			</dataSource>
 		</environment>
 		
-		<environment id="test">
+		<environment id="innodb">
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
 				<property name="driver" value="${driver}"/>
-				<property name="url" value="${test_url}"/>
-				<property name="username" value="${test_username}"/>
-				<property name="password" value="${test_password}"/>
+				<property name="url" value="${inno_url}"/>
+				<property name="username" value="${inno_username}"/>
+				<property name="password" value="${inno_password}"/>
 			</dataSource>
-		</environment>	
+		</environment>
+		
+		<environment id="work">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${work_url}"/>
+				<property name="username" value="${work_uesrname}"/>
+				<property name="password" value="${work_password}"/>
+			</dataSource>
+		</environment>
 	</environments>
 	
 	<mappers>
