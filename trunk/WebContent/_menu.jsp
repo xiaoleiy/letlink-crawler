@@ -10,68 +10,93 @@
 	String page_uri = request.getRequestURI(); //Diff from getRequestURL(), which returns full request URL.
 %>
 </head>
-<body onload="<% 
-		if(session.getAttribute("login_user") != null)
-			out.print("javascript:login_load(" + (String)session.getAttribute("login_user") + ")");
-		else out.print("javascript:not_login_load()");
-	%>">
+<body>
 	<div class="header">
 		<h1><a href="<%=basedir %>/index.jsp">Letlink-Crawler Management</a></h1>
 		<s:if test="#session.login_user != null">
-			<p class="welcome_bar">Welcome&nbsp; !&nbsp;|&nbsp;<a href="<%=basedir %>/logout?from_url=<%=page_uri%>">Logout</a></p>
+			<p class="welcome_bar">Welcome&nbsp;  <s:property value="#session['login_user']"/>!&nbsp;|&nbsp;
+				<a href="<%=basedir %>/logout?from_url=<%=page_uri%>">Logout</a>
+			</p>
 		</s:if>
 		<s:else>
-				<p class="welcome_bar"><a href="<%=basedir %>/login.jsp?from_url=<%=page_uri %>">Login</a></p>
+			<p class="welcome_bar"><a href="<%=basedir %>/login.jsp?from_url=<%=page_uri %>">Login</a></p>
 		</s:else>
 	</div>
 	<hr />
-	<table class="menu">
-		<tr>
-			<td id="crawler_def" class="section">
-				<h3><a href="javascript:show_submenu('crawler_def')">Crawler Definition</a></h3>
-				<ul class="submenu">
-					<li><a href="<%=basedir %>/crawler_def/domain.jsp">Domain</a></li>
-					<li><a href="<%=basedir %>/crawler_def/seedlist.jsp">Seedlist</a></li>
-					<li><a href="<%=basedir %>/crawler_def/cron.jsp">Cron</a></li>
-					<li><a href="<%=basedir %>/crawler_def/url_exclusion.jsp">URL Exclusion</a></li>
-					<li><a href="<%=basedir %>/crawler_def/crawler.jsp">Crawler</a></li>
-				</ul>
-			</td>
-			<td id="task_job_mgmt" class="section">
-				<h3><a href="javascript:show_submenu('task_job_mgmt')">Task/Job Management</a></h3>
-				<ul class="submenu">
-					<li><a href="<%=basedir %>/crawler_run/crawler_list.jsp">Crawler List</a></li>
-					<li><a href="<%=basedir %>/crawler_run/job_list.jsp">Job List</a></li>
-					<li><a href="<%=basedir %>/crawler_run/run_stats.jsp">Running Stats</a></li>
-				</ul>
-			</td>
-			<td id="img_viewer" class="section">
-				<h3><a href="<%=basedir %>/crawler_run/img_viewer.jsp">Image Viewer</a></h3>
-			</td>
-			<td id="sys_monitor" class="section">
-				<h3><a href="javascript:show_submenu('sys_monitor')">Crawlers Monitor</a></h3>
-				<ul class="submenu">
-					<li><a href="<%=basedir %>/monitor/crawling_status.jsp">Crawling Status</a></li>
-					<li><a href="<%=basedir %>/monitor/logs.jsp">Running Logs</a></li>
-				</ul>
-			</td>
-			<td id="server_monitor" class="section">
-				<h3><a href="javascript:show_submenu('server_monitor')">Server Monitor</a></h3>
-				<ul class="submenu">
-					<li><a href="<%=basedir %>/monitor/crawlers.jsp">Crawler Servers</a></li>
-					<li><a href="<%=basedir %>/monitor/web_server.jsp">Web Servers</a></li>
-					<li><a href="<%=basedir %>/monitor/ftp_server.jsp">FTP Servers</a></li>
-					<li><a href="<%=basedir %>/monitor/db_servers.jsp">DB Servers</a></li>
-				</ul>
-			</td>
-		</tr>
-	</table>
+	<script type="text/javascript">
+	
+		var timeout = 500;
+		var closetimer = 0;
+		var ddmenuitem = 0;
+
+		function jsddm_open() {
+			jsddm_canceltimer();
+			jsddm_close();
+			ddmenuitem = $(this).find('ul').eq(0).css('visibility', 'visible');
+		}
+
+		function jsddm_close() {
+			if (ddmenuitem)
+				ddmenuitem.css('visibility', 'hidden');
+		}
+
+		function jsddm_timer() {
+			closetimer = window.setTimeout(jsddm_close, timeout);
+		}
+
+		function jsddm_canceltimer() {
+			if (closetimer) {
+				window.clearTimeout(closetimer);
+				closetimer = null;
+			}
+		}
+
+		$(document).ready(function(){
+			$('#jsddm > li').bind('mouseover', jsddm_open);
+			$('#jsddm > li').bind('mouseout', jsddm_timer);
+		});
+		document.onclick = jsddm_close;
+	</script>
+	<ul id="jsddm">
+		<li><a href="#">Crawler Definition</a>
+			<ul>
+				<li><a href="<%=basedir %>/crawler_def/domain.jsp">Domain</a></li>
+				<li><a href="<%=basedir %>/crawler_def/seedlist.jsp">Seedlist</a></li>
+				<li><a href="<%=basedir %>/crawler_def/cron.jsp">Cron</a></li>
+				<li><a href="<%=basedir %>/crawler_def/url_exclusion.jsp">URL Exclusion</a></li>
+				<li><a href="<%=basedir %>/crawler_def/crawler.jsp">Crawler</a></li>
+			</ul>
+		</li>
+		<li><a href="#">Task/Job Management</a>
+			<ul>
+				<li><a href="<%=basedir %>/crawler_run/crawler_list.jsp">Crawler List</a></li>
+				<li><a href="<%=basedir %>/crawler_run/job_list.jsp">Job List</a></li>
+				<li><a href="<%=basedir %>/crawler_run/run_stats.jsp">Running Stats</a></li>
+			</ul>
+		</li>
+		<li><a href="#">Image Viewer</a></li>
+		<li><a href="#">Crawlers Monitor</a>
+			<ul>
+				<li><a href="<%=basedir %>/monitor/crawling_status.jsp">Crawling Status</a></li>
+				<li><a href="<%=basedir %>/monitor/logs.jsp">Running Logs</a></li>
+			</ul>
+		</li>
+		<li><a href="#">Server Monitor</a>
+			<ul>
+				<li><a href="<%=basedir %>/monitor/crawlers.jsp">Crawler Servers</a></li>
+				<li><a href="<%=basedir %>/monitor/web_server.jsp">Web Servers</a></li>
+				<li><a href="<%=basedir %>/monitor/ftp_server.jsp">FTP Servers</a></li>
+				<li><a href="<%=basedir %>/monitor/db_servers.jsp">DB Servers</a></li>
+			</ul>
+		</li>
+	</ul>
+	<div class="clear"></div>
 	<script type="text/javascript">
 		$('table.menu td.section h3 a').each(function(index){
-		var menu_div = $(this).parent().parent();
-		var submenu_list = menu_div.children('.submenu');
-		menu_div.hover(function(){show_submenu(submenu_list);},function(){hide_submenu(submenu_list);});
-	});
+			var menu_div = $(this).parent().parent();
+			var submenu_list = menu_div.children('.submenu');
+			menu_div.hover(function(){show_submenu(submenu_list);},function(){hide_submenu(submenu_list);});
+		});
 	</script>
 	<s:if test="#session.login_user == null">
 		<script type="text/javascript">
