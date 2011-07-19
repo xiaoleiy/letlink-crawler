@@ -16,6 +16,8 @@ public class MyGuiceServletContextListener extends GuiceServletContextListener {
 	@Override
 	protected Injector getInjector() {
 		GuiceDebug.enable();
+		// Could specify 1st param as injector's running stage: 
+		//		 com.google.inject.Stage.TOOL, Stage.DEVELOPMENT, Stage.PRODUCTION.
 		return Guice.createInjector(
 				new Struts2GuicePluginModule(),
 				new ServletModule() {

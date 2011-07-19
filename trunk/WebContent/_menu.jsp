@@ -10,21 +10,21 @@
 	String page_uri = request.getRequestURI(); //Diff from getRequestURL(), which returns full request URL.
 %>
 </head>
-<body>
+<body onload="<% 
+		if(session.getAttribute("login_user") != null)
+			out.print("javascript:login_load(" + (String)session.getAttribute("login_user") + ")");
+		else out.print("javascript:not_login_load()");
+	%>">
 	<div class="header">
-		<h1>Letlink-Crawler Management</h1>
+		<h1><a href="<%=basedir %>/index.jsp">Letlink-Crawler Management</a></h1>
+		<s:if test="#session.login_user != null">
+			<p class="welcome_bar">Welcome&nbsp; !&nbsp;|&nbsp;<a href="<%=basedir %>/logout?from_url=<%=page_uri%>">Logout</a></p>
+		</s:if>
+		<s:else>
+				<p class="welcome_bar"><a href="<%=basedir %>/login.jsp?from_url=<%=page_uri %>">Login</a></p>
+		</s:else>
 	</div>
-	<table style="margin: 0 14px; text-align: right; position: relative; left: 67%;">
-		<tr><td>
-			<s:if test="#session.login_user != null">
-				<label>Welcome&nbsp;</label><s:property value="#session['login_user']"/><label>!</label>
-				&nbsp;<label style="height: 0.8em;">|</label>&nbsp;<a href="<%=basedir %>/logout?from_url=<%=page_uri%>">Logout</a>
-			</s:if>
-			<s:else>
-				<a href="<%=basedir %>/login.jsp?from_url=<%=page_uri %>">Login</a>
-			</s:else>
-		</td></tr>
-	</table>
+	<hr />
 	<table class="menu">
 		<tr>
 			<td id="crawler_def" class="section">
@@ -75,11 +75,12 @@
 	</script>
 	<s:if test="#session.login_user == null">
 		<script type="text/javascript">
-					$('.menu .section').each(function(){
-						$(this).unbind();
-						$(this).children('h3').children('a').attr('href','#');
-					});
+			$('.menu .section').each(function(){
+				$(this).unbind();
+				$(this).children('h3').children('a').attr('href','#');
+			});
 		</script>
 	</s:if>
+	<hr />
 </body>
 </html>

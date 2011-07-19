@@ -14,20 +14,30 @@
 <title>Letlink Crawler</title>
 </head>
 <body>
-	<jsp:include page="_menu.jsp"></jsp:include>
-	<div style="text-align: left; position: absolute; left: 22%;">
-		<h5>The Letlink Crawler&copy; product crawls images from all over the web, with high performance and availability.</h5>
-		<br/><h5>The product provides the following functions:</h5>
-		<ul>
-			<li>Crawler definition</li>
-			<li>Image crawling</li>
-			<li>System monitor and image viewing</li>
-			<li>Distributed servers for crawling</li>
-			<li>Centralized image storage</li>
-			<li>Interface to the phase-I project</li>
-		</ul>
-		<br/><h5>This product is powered by <i>Heritrix</i>, a open-source Java crawler, and <i>Netarchive</i>, 
-		a open-source implementation of distributed crawlers</h5>
+	<div class="wrapper">
+		<jsp:include page="_menu.jsp"></jsp:include>
+		<div class="main">
+			<h5>The Letlink Crawler&copy; product crawls images from all over the web, with high performance and availability.</h5>
+			<br/><h5>The product provides the following functions:</h5>
+			<ul>
+				<li>Crawler definition</li>
+				<li>Image crawling</li>
+				<li>System monitor and image viewing</li>
+				<li>Distributed servers for crawling</li>
+				<li>Centralized image storage</li>
+				<li>Interface to the phase-I project</li>
+			</ul>
+			<br/><h5>This product is powered by <i>Heritrix</i>, a open-source Java crawler, and <i>Netarchive</i>, 
+			a open-source implementation of distributed crawlers</h5>
+		</div>
+		
+		<div class="footer">
+		<span>&nbsp; &copy; 2011, www.letlink.com, All rights Reserved</span>
+		<br /><span>&nbsp; Compatible with CSS2, HTML4.0</span>
+		<br /><span>&nbsp; Powered by <a href="http://crawler.archive.org" ><i>Heritrix Project</i></a>
+			, and <a href="http://netarchive.dk/suite" ><i>Netarchive Project</i></a>.
+		</span>
+		</div>
 	</div>
 </body>
 </html>

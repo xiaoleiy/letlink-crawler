@@ -62,7 +62,7 @@ public class Login extends ActionSupport {
 	public String execute() throws IOException{
 		if("admin".equals(getParam(params, "username")) && "admin".equals(getParam(params, "password"))){
 			session.setAttribute("login_user", getParam(params, "username"));
-			session.setAttribute("logined", true);
+			session.setAttribute("logined", new Boolean(true));
 			response.sendRedirect(getParam(params, "from_url"));
 			return ActionSupport.NONE;
 		}else{

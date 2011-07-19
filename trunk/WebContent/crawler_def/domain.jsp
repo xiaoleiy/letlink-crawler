@@ -13,61 +13,39 @@
 <script type="text/javascript" src="../styles/main.js"></script>
 <title>Domains Definition</title>
 </head>
-<body>
-	<div style="margin: 5px 0"><jsp:include page="../_menu.jsp"></jsp:include></div>
-	<div>
-		<table>
-			<caption>Domains List</caption>
-			<thead>
-				<tr>
-					<td>Name</td>
-					<td>Alias</td>
-					<td>Config</td>
-					<td>Description</td>
-					<td>URL Excluded</td>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>google.com</td>
-					<td>GOOG</td>
-					<td>null</td>
-					<td>Google's all domains</td>
-					<td>https://plus.google.com</td>
-				</tr>
-			</tbody>
-			
-		</table>
-	</div>
-	
-	<div>
-		<form id="add_domain_form" action="addDomain" method="POST">
-			<div>
-				<label class="basic_label">Domain Name:&nbsp;</label>
-				<input id="domain_name" type="text" class="basic_input" name="domainName" maxlength="150" tabindex="1" />
-				<label id="domain_name_tip" class="basic_tip">Please type domain name, e.g., letlink.com</label>
-			</div>
-			<div>
-				<label class="basic_label">Domain Alias:&nbsp;</label>
-				<input id="domain_alias" type="text" class="basic_input" name="domainAlias" maxlength="150" tabindex="2" />
-				<label id="domain_alias_tip" class="basic_tip">Please type domain alias, e.g., Letlink</label>
-			</div>
-			<div>
-				<label class="basic_label">Comment:&nbsp;</label>
-				<textarea id="domain_comment" name="domainComment" rows="5" cols="50" tabindex="3" ></textarea>
-			</div>
-			<div>
-				<input type="submit" value="Add" />
-			</div>
-		</form>
-	</div>
-	
-	<div class="footer">
-		<span>&nbsp; &copy; 2011, www.letlink.com, All rights Reserved</span>
-		<br /><span>&nbsp; Powered by <a href="http://crawler.archive.org" ><i>Heritrix Project</i></a>
-			, and <a href="http://netarchive.dk/suite" ><i>Netarchive Project</i></a>.
-		</span>
-		<br /><span>&nbsp; Compatible with CSS2, HTML4.0</span>
+<body onload="<% if(session.getAttribute("logined") != null && ((Boolean)session.getAttribute("logined")).booleanValue())
+		out.print("javascript:domains_load()");
+	else out.print("javascript:login_warn()"); %> ">
+	<div class="wrapper">
+		<jsp:include page="../_menu.jsp"></jsp:include>
+		<div class="main">
+			<form id="add_domain_form" action="addDomain" method="POST">
+				<div>
+					<label class="basic_label">Domain Name:&nbsp;</label>
+					<input id="domain_name" type="text" class="basic_input" name="domainName" maxlength="150" tabindex="1" />
+					<label id="domain_name_tip" class="basic_tip">Please type domain name, e.g., letlink.com</label>
+				</div>
+				<div>
+					<label class="basic_label">Domain Alias:&nbsp;</label>
+					<input id="domain_alias" type="text" class="basic_input" name="domainAlias" maxlength="150" tabindex="2" />
+					<label id="domain_alias_tip" class="basic_tip">Please type domain alias, e.g., Letlink</label>
+				</div>
+				<div>
+					<label class="basic_label">Comment:&nbsp;</label>
+					<textarea id="domain_comment" name="domainComment" rows="5" cols="50" tabindex="3" ></textarea>
+				</div>
+				<div>
+					<input type="submit" value="Add" />
+				</div>
+			</form>
+		</div>
+		<div class="footer">
+			<span>&nbsp; &copy; 2011, www.letlink.com, All rights Reserved</span>
+			<br /><span>&nbsp; Compatible with CSS2, HTML4.0</span>
+			<br /><span>&nbsp; Powered by <a href="http://crawler.archive.org" ><i>Heritrix Project</i></a>
+				, and <a href="http://netarchive.dk/suite" ><i>Netarchive Project</i></a>.
+			</span>
+		</div>
 	</div>
 </body>
 </html>
