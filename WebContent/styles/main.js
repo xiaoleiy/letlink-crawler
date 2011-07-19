@@ -59,13 +59,20 @@ function nonEmpty(text){
 /**
  * [_menu.jsp] Show/hide drop-down sub-menus 
  */
-function login_load(username){
+/*function process_login(username){
 	$('.header h1').after('<p class="welcome_bar">Welcome&nbsp; ' + username + '!&nbsp;|&nbsp;<a href="<%=basedir %>/logout?from_url=<%=page_uri%>">Logout</a></p>');
-}
+	$('table.menu td.section h3 a').each(function(index){
+		var menu_div = $(this).parent().parent();
+		var submenu_list = menu_div.children('.submenu');
+		menu_div.hover(
+			function(){		//hover over
+				submenu_list.css('overflow', 'visible');
+			},function(){	//hover off
+		});
+	});
+}*/
 
-function notlogin_load(){
-	$('.header h1').after('<p class="welcome_bar"><a href="<%=basedir %>/login.jsp?from_url=<%=page_uri %>">Login</a></p>');
-}
+
 function show_submenu(submenu_list){
 	submenu_list.css('overflow', 'visible');
 }
@@ -74,7 +81,6 @@ function hide_submenu(submenu_list){
 	submenu_list.css('height', '0');
 	submenu_list.css('overflow', 'hidden');
 }
-
 /**
  * display warning message to login first
  */
@@ -86,7 +92,5 @@ function login_warn(){
  * load domains data
  */
 function domains_load(){
-	$.ajax({
-		
-	});
+	
 }
