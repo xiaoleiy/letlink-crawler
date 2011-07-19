@@ -26,7 +26,7 @@ function setCookie(cname, content) {
 }
 
 /**
- * [login.jsp] Validate user's inputs
+ * [login.jsp] validate user's inputs
  * */
 function validate_login(){
 	//username.get(0).value == username.attr('value') == username.val()
@@ -57,8 +57,15 @@ function nonEmpty(text){
 }
 
 /**
- * [menu.jsp] Show/hide drop-down submenus 
+ * [_menu.jsp] Show/hide drop-down sub-menus 
  */
+function login_load(username){
+	$('.header h1').after('<p class="welcome_bar">Welcome&nbsp; ' + username + '!&nbsp;|&nbsp;<a href="<%=basedir %>/logout?from_url=<%=page_uri%>">Logout</a></p>');
+}
+
+function notlogin_load(){
+	$('.header h1').after('<p class="welcome_bar"><a href="<%=basedir %>/login.jsp?from_url=<%=page_uri %>">Login</a></p>');
+}
 function show_submenu(submenu_list){
 	submenu_list.css('overflow', 'visible');
 }
@@ -66,4 +73,20 @@ function show_submenu(submenu_list){
 function hide_submenu(submenu_list){
 	submenu_list.css('height', '0');
 	submenu_list.css('overflow', 'hidden');
+}
+
+/**
+ * display warning message to login first
+ */
+function login_warn(){
+	$('div.main').replaceWith('<div class="main"><center><h2 style="color: red">Please login first!</h2.</center></div>');
+}
+
+/**
+ * load domains data
+ */
+function domains_load(){
+	$.ajax({
+		
+	});
 }

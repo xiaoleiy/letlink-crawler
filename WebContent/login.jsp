@@ -20,7 +20,7 @@
 	%>
 </head>
 <body bgcolor="#CCCCCC">
-<div>
+<div class="wrapper">
 	<form id="login_form" name="login_form" action="login" method="POST" onsubmit="return validate_login()">
 		<div class="login_input">
 			<label class="basic_label">Username:&nbsp;</label>
