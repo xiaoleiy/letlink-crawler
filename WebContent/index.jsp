@@ -29,7 +29,6 @@
 			</ul>
 		</div>
 		
-	<!-- <div class="clear"> </div> -->
 	</div>
 	
 	<div id="copyright">
@@ -39,5 +38,6 @@
 			, and <a href="http://netarchive.dk/suite" ><i>Netarchive Project</i></a>.
 		</span>
 	</div>
+	<div class="clear"> </div>
 </body>
 </html>

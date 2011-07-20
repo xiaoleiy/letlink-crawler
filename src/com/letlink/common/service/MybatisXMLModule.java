@@ -6,7 +6,7 @@ public class MybatisXMLModule extends XMLMyBatisModule {
 
 	@Override
 	protected void initialize() {
-		setEnvironmentId("development"); // Change to customize environment 
+		setEnvironmentId("work"); // Change to customize environment 
 		setClassPathResource("com/letlink/webinterface/datamapper/mybatis-config.xml");
 	}
 
