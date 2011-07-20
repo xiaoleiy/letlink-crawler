@@ -14,7 +14,10 @@
 	<insert id="insert" parameterType="Category" flushCache="true" useGeneratedKeys="true" keyProperty="categoryID">
 		INSERT INTO category(name, comment) VALUES(#{name}, #{comment})
 	</insert>
-	
+
+	<select id="selectAll" resultType="Category" useCache="true">
+		SELECT <include refid="full_cols"/> FROM category
+	</select>	
 	<select id="selectById" parameterType="int" resultMap="categoryResultMap" useCache="true">
 		SELECT <include refid="full_cols" /> FROM category WHERE category_id = #{id}
 	</select>

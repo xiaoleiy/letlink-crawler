@@ -7,18 +7,48 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="author" content="Jerry Joe">
 <meta name="robots" content="none">
+<title>Domains Definition</title>
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.4.0/build/reset-fonts-grids/reset-fonts-grids.css">
 <link type="text/css" rel="stylesheet" href="../styles/main.css"/>
 <script type="text/javascript" src="../styles/jquery-1.6.2.js"></script>
 <script type="text/javascript" src="../styles/main.js"></script>
-<title>Domains Definition</title>
+<script type="text/javascript">
+	function categories_load(){
+		$.ajax({
+			type: 'GET',
+			url: 'listCategories.do',
+			dataType: 'json',
+			success: function(data){
+				var cnt, cateListdiv = $('.main .leftnav #category_list');
+				var cateList = data.cateList;
+				for(cnt = 0; cnt < cateList.lenth; cnt++){
+					cateListdiv.append('<li><a href="javascript:domains_load(' + cateList[cnt].category_id + ')">'
+							+ cateList[cnt].category_name + '</a></li>');
+				}
+				cateListdiv.after('<p>Total: ' + cnt + ' categories</p>');
+			}
+		});
+	}
+	
+	function domains_load(category_id){
+		/* get domains by category_id, and when category_id is NULL, get all domains */
+		
+	}
+</script>
 </head>
-<body onload="<% if(session.getAttribute("logined") != null && ((Boolean)session.getAttribute("logined")).booleanValue())
-		out.print("javascript:domains_load()");
-	else out.print("javascript:login_warn()"); %> ">
+<body onload="<%
+		if(session.getAttribute("logined") != null && ((Boolean)session.getAttribute("logined")).booleanValue())
+			out.print("javascript:categories_load()");
+		else out.print("javascript:login_warn()"); 
+	%> ">
 	<div class="wrapper">
 		<jsp:include page="../_menu.jsp"></jsp:include>
 		<div class="main">
+			<div class="leftnav">
+				<ul id="category_list">
+					
+				</ul>
+			</div>
 			<form id="add_domain_form" action="addDomain" method="POST">
 				<div>
 					<label class="basic_label">Domain Name:&nbsp;</label>
