@@ -1,10 +1,10 @@
 @CHARSET "UTF-8";
 
-/*-------------------- Layout -----------------------*/
+/*-------------------- common elements -----------------------*/
 body {
 	background: #6595A3;
 	display: block;
-	padding: 10px 20px;
+	padding: 5px 20px 25px;
 	margin: 0;
 	font-size: 100%;
 	line-height: 162%;
@@ -32,11 +32,11 @@ a {
 }
 
 div.wrapper {
-	margin: 40px auto 0 auto;
+	margin: 10px auto 0 auto;
 	padding: 20px 35px;
 	background: #FCFFED;
  	min-width: 650px;
- 	height: 752px;
+ 	height: 460px;
 }
 
 div.wrapper .header h1 a {
@@ -48,7 +48,7 @@ div.wrapper .header h1 a {
 div.wrapper .header p.welcome_bar {
 	width: 30%;
 	margin-top: 5px;
-	padding: 2px;
+	padding: 2px 2px 0;
 	position: relative;
 	left: 70%;
 }
@@ -60,60 +60,6 @@ div.wrapper .header p.welcome_bar a {
 	font-weight: 600;
 }
 
-.wrapper .main {
-	margin: 20px auto;
-	padding: 5px 5px;
-	text-align: left;
-}
-
-.wrapper .main table {
-	border: 1px solid;
-	padding: 5px;
-	margin: 5px;
-	border-spacing: 1px solid #696969;
-	border-collapse: collapse;
-	caption-side: top;
-}
-
-.wrapper .main table thead {
-	background-color: #778899;
-}
-
-.wrapper .main table thead td {
-	text-align: center;
-	vertical-align: center;
-	padding: 5px;
-	border: 1px solid #696969;
-}
-
-.wrapper .main table tbody td {
-	text-align: left;
-	vertical-align: center;
-	padding: 1px 5px;
-	border: 1px solid #696969;
-}
-
-#copyright {
-	background: #B6C28B;
-	border-top: 1px dashed #DDD;
-	margin: 0 auto;
-	padding: 20px 35px;
-	min-width: 650px; 
-	font: 12px tahoma, arial;
-	color: #324143;
-}
-
-#copyright span {
-	float: center;
-}
-
-#copyright span a {
-	color: #324143;
-}
-
-#copyright span a:hover {
-	color: #171F26;
-}
 
 /*-------------------- menu --------------------*/
 .clear {
@@ -172,10 +118,87 @@ div.wrapper .header p.welcome_bar a {
 	background: #8EA344
 }
 
-/*-------------------- login --------------------*/
-form {
+
+/* --------------------------- main -------------------------- */
+.wrapper .main {
+	margin: 10px auto;
+	padding: 5px 5px;
+	text-align: left;
+}
+
+.wrapper .main table {
+	border: 1px solid;
+	padding: 5px;
+	margin: 5px;
+	border-spacing: 1px solid #696969;
+	border-collapse: collapse;
+	caption-side: top;
+}
+
+.wrapper .main table thead {
+	background-color: #778899;
+}
+
+.wrapper .main table thead td {
+	text-align: center;
+	vertical-align: center;
+	padding: 5px;
+	border: 1px solid #696969;
+}
+
+.wrapper .main table tbody td {
+	text-align: left;
+	vertical-align: center;
+	padding: 1px 5px;
+	border: 1px solid #696969;
+}
+
+
+/* --------------------------- left navigation -------------------------- */
+.main .leftnav {
+	float: left;
+	width: 31.4%;
+	height: 100%;
+	border: 1px solid black;
+	border-right: 1px dashed black;
+	margin-right: 20px;
+	padding: 5px;
+}
+
+
+/* --------------------------- copyright/footer -------------------------- */
+#copyright {
+	background: #B6C28B;
+	border-top: 1px dashed #DDD;
+	margin: 0 auto;
+	padding: 20px 35px;
+	min-width: 650px; 
+	font: 12px tahoma, arial;
+	color: #324143;
+}
+
+#copyright span {
 	float: center;
 }
+
+#copyright span a {
+	color: #324143;
+}
+
+#copyright span a:hover {
+	color: #171F26;
+}
+
+
+/*-------------------- login page --------------------*/
+
+.login {
+	width:50%;
+	position: relative;
+	left: 25%;
+	top:  20%;
+}
+
 
 label.basic_label {
 	width: 86px;

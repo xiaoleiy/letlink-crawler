@@ -12,9 +12,11 @@
 			<result name="LOGIN">/login.jsp</result>
 			<result name="LOGIN_ERR">/login_error.jsp</result>
 			<result name="ERROR">/error.jsp</result>
+			<result name="DOMAIN">/crawler_def/domain.jsp</result>
 		</global-results>
 		<action name="login" class="com.letlink.webinterface.servlets.Login"></action>
 		<action name="logout" class="com.letlink.webinterface.servlets.Login" method="logout"></action>
 		<action name="addDomain" class="com.letlink.webinterface.servlets.DomainServlet" method="addDomain"></action>
+		<action name="loadCategories" class="com.letlink.webinterface.servlets.DomainServlet" method="getCategories"></action>
 	</package>
 </struts>

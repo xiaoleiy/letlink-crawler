@@ -15,12 +15,14 @@
 	
 	<%
 		String from_url = request.getParameter("from_url");
-		if(from_url == null || "".equals(from_url))
+		if(from_url == null || "".equals(from_url) || "/Letlink-crawler/login.jsp".equals(from_url))
 			from_url = "/Letlink-crawler/index.jsp";
 	%>
 </head>
 <body bgcolor="#CCCCCC">
 <div class="wrapper">
+	<jsp:include page="_menu.jsp"></jsp:include>
+	<div class="login">
 	<form id="login_form" name="login_form" action="login" method="POST" onsubmit="return validate_login()">
 		<div class="login_input">
 			<label class="basic_label">Username:&nbsp;</label>
@@ -38,6 +40,7 @@
 			<input class="btn_submit" name="submit" type="submit" value="login" tabindex="3" />
 		</div>
 	</form>
+	</div>
 </div>
 </body>
 </html>
