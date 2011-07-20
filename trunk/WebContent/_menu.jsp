@@ -9,20 +9,6 @@
 	String basedir = request.getContextPath();
 	String page_uri = request.getRequestURI(); //Diff from getRequestURL(), which returns full request URL.
 %>
-</head>
-<body>
-	<div class="header">
-		<h1><a href="<%=basedir %>/index.jsp">Letlink-Crawler Management</a></h1>
-		<s:if test="#session.login_user != null">
-			<p class="welcome_bar">Welcome&nbsp;  <s:property value="#session['login_user']"/>!&nbsp;|&nbsp;
-				<a href="<%=basedir %>/logout?from_url=<%=page_uri%>">Logout</a>
-			</p>
-		</s:if>
-		<s:else>
-			<p class="welcome_bar"><a href="<%=basedir %>/login.jsp?from_url=<%=page_uri %>">Login</a></p>
-		</s:else>
-	</div>
-	<hr />
 	<script type="text/javascript">
 	
 		var timeout = 500;
@@ -51,12 +37,32 @@
 			}
 		}
 
-		$(document).ready(function(){
+		/* $(document).ready(function(){
 			$('#jsddm > li').bind('mouseover', jsddm_open);
 			$('#jsddm > li').bind('mouseout', jsddm_timer);
-		});
-		document.onclick = jsddm_close;
+		});*/
+		document.onclick = jsddm_close; 
 	</script>
+</head>
+<body>
+	<div class="header">
+		<h1><a href="<%=basedir %>/index.jsp">Letlink-Crawler Management</a></h1>
+		<s:if test="#session.login_user != null">
+			<p class="welcome_bar">Welcome&nbsp;  <s:property value="#session['login_user']"/>!&nbsp;|&nbsp;
+				<a href="<%=basedir %>/logout?from_url=<%=page_uri%>">Logout</a>
+			</p>
+			<script type="text/javascript">
+				$(document).ready(function(){
+					$('#jsddm > li').bind('mouseover', jsddm_open);
+					$('#jsddm > li').bind('mouseout', jsddm_timer);
+				});
+			</script>
+		</s:if>
+		<s:else>
+			<p class="welcome_bar"><a href="<%=basedir %>/login.jsp?from_url=<%=page_uri %>">Login</a></p>
+		</s:else>
+	</div>
+	<hr />
 	<ul id="jsddm">
 		<li><a href="#">Crawler Definition</a>
 			<ul>
@@ -91,21 +97,6 @@
 		</li>
 	</ul>
 	<div class="clear"></div>
-	<script type="text/javascript">
-		$('table.menu td.section h3 a').each(function(index){
-			var menu_div = $(this).parent().parent();
-			var submenu_list = menu_div.children('.submenu');
-			menu_div.hover(function(){show_submenu(submenu_list);},function(){hide_submenu(submenu_list);});
-		});
-	</script>
-	<s:if test="#session.login_user == null">
-		<script type="text/javascript">
-			$('.menu .section').each(function(){
-				$(this).unbind();
-				$(this).children('h3').children('a').attr('href','#');
-			});
-		</script>
-	</s:if>
 	<hr />
 </body>
 </html>

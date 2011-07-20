@@ -2,12 +2,13 @@
 
 /*-------------------- Layout -----------------------*/
 body {
-	font-size: 100%;
-	padding: 10px 20px;
-	line-height: 162%;
 	background: #6595A3;
-	margin: 0;
 	display: block;
+	padding: 10px 20px;
+	margin: 0;
+	font-size: 100%;
+	line-height: 162%;
+	min-height: inherit;
 }
 
 h1 {
@@ -35,6 +36,7 @@ div.wrapper {
 	padding: 20px 35px;
 	background: #FCFFED;
  	min-width: 650px;
+ 	height: 752px;
 }
 
 div.wrapper .header h1 a {
@@ -98,19 +100,19 @@ div.wrapper .header p.welcome_bar a {
 	padding: 20px 35px;
 	min-width: 650px; 
 	font: 12px tahoma, arial;
-	color: #324143
+	color: #324143;
 }
 
 #copyright span {
-	float: center
+	float: center;
 }
 
 #copyright span a {
-	color: #324143
+	color: #324143;
 }
 
 #copyright span a:hover {
-	color: #171F26
+	color: #171F26;
 }
 
 /*-------------------- menu --------------------*/
@@ -120,15 +122,6 @@ div.wrapper .header p.welcome_bar a {
 	height: 0
 }
 
-#all {
-	width: 80%;
-	min-width: 650px;
-	margin: 40px auto 0 auto;
-	background: #FCFFED;
-	padding: 20px 35px
-}
-
-
 #jsddm {
 	margin: 0;
 	padding: 0
@@ -137,7 +130,8 @@ div.wrapper .header p.welcome_bar a {
 #jsddm li {
 	float: left;
 	list-style: none;
-	font: 14px Tahoma, Arial
+	font: 14px Tahoma, Arial;
+	width: 20%;
 }
 
 #jsddm li a {
@@ -146,7 +140,6 @@ div.wrapper .header p.welcome_bar a {
 	padding: 5px 12px;
 	text-decoration: none;
 	border-right: 1px solid white;
-	width: 150px;
 	color: #EAFFED;
 	white-space: nowrap
 }
@@ -170,7 +163,7 @@ div.wrapper .header p.welcome_bar a {
 }
 
 #jsddm li ul li a {
-	width: auto;
+	width: 150px;
 	background: #A9C251;
 	color: #24313C
 }
