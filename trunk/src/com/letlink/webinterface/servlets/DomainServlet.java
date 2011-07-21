@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONArray;
 import com.opensymphony.xwork2.ActionSupport;
 import com.google.inject.Inject;
 import com.google.inject.servlet.RequestParameters;
@@ -56,9 +57,31 @@ public class DomainServlet extends ActionSupport {
 	
 	public String getCategories(){
 		List<Category> categoryList = categoryMapper.selectAll();
-		for(int i = 0; i < categoryList.size(); i++)
-			logger.info("id: " + categoryList.get(i).getCategoryID() + ", name: " + categoryList.get(i).getName());
-		//TODO retrieve category data and convert into JSON data format, then respond to client.
+		JSONArray jsonCategoryList = JSONArray.fromObject(categoryList);
+		response.setContentType("application/json;charset=UTF-8");
+		try {
+			response.getWriter().write(jsonCategoryList.toString());
+		} catch (IOException e) {
+			logger.severe("Failed to write JSON formated category list to client. Exception: "  + e.getMessage());
+			e.printStackTrace();
+		}
+		return ActionSupport.NONE;
+	}
+	
+	public String getDomains(){
+		List<Domain> domainList = null;
+		String categoryID = getParam(params, "category_id");
+		if(categoryID == null)
+			domainList = domainMapper.selectAll();
+		else domainList = domainMapper.selectAllByCategory(Integer.parseInt(categoryID));
+		JSONArray jsonDomainList = JSONArray.fromObject(domainList);
+		response.setContentType("application/json;charset=UTF-8");
+		try{
+			response.getWriter().write(jsonDomainList.toString());
+		} catch (IOException e) {
+			logger.severe("Failed to write JSON formated category list to client. Exception: "  + e.getMessage());
+			e.printStackTrace();
+		}
 		return ActionSupport.NONE;
 	}
 	

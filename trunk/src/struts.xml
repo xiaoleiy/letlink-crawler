@@ -16,7 +16,8 @@
 		</global-results>
 		<action name="login" class="com.letlink.webinterface.servlets.Login"></action>
 		<action name="logout" class="com.letlink.webinterface.servlets.Login" method="logout"></action>
+		<action name="loadCategory" class="com.letlink.webinterface.servlets.DomainServlet" method="getCategories"></action>
 		<action name="addDomain" class="com.letlink.webinterface.servlets.DomainServlet" method="addDomain"></action>
-		<action name="loadCategories" class="com.letlink.webinterface.servlets.DomainServlet" method="getCategories"></action>
+		<action name="loadDomain" class="com.letlink.webinterface.servlets.DomainServlet" method="getDomains"></action>		
 	</package>
 </struts>
