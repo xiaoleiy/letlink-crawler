@@ -4,12 +4,16 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.io.Resources;
+
+import net.sf.json.JSONArray;
 
 import com.letlink.common.datamodel.Category;
 import com.letlink.common.datamodel.Domain;
@@ -19,7 +23,7 @@ import com.letlink.webinterface.datamapper.DomainMapper;
 public class TestDomainWOGuice {
 	
 	private static final String MAPPER_CONFIG = "com/letlink/webinterface/datamapper/mybatis-config.xml";
-	private static final String DB_ENV = "development";
+	private static final String DB_ENV = "work";
 	private Logger logger = Logger.getLogger("TestDomainWOGuice");
 	private SqlSession session;
 	private CategoryMapper categoryMapper;
@@ -54,6 +58,15 @@ public class TestDomainWOGuice {
 		int rows = domainMapper.insert(domain);
 		assertEquals(rows, 1);
 		logger.info("[INFO] ID of the inserted domain: " + domain.getDomainID());
+	}
+	
+	@Test
+	public void testCategories(){
+		List<Category> categoryList = categoryMapper.selectAll();
+		for(int i = 0; i < categoryList.size(); i++)
+			logger.info("id: " + categoryList.get(i).getCategoryID() + ", Name: " + categoryList.get(i).getName());
+		JSONArray jsonObj = JSONArray.fromObject(categoryList);
+		logger.info("" + jsonObj);
 	}
 
 }

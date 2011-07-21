@@ -10,6 +10,7 @@ public interface DomainMapper {
 	public Domain selectByName(String name);
 	public List<Domain> selectAllCrawling(boolean isCrawling);
 	public List<Domain> selectAllByCategory(int categoryID);
+	public List<Domain> selectAll();
 	public int update(Domain domain);
 	public int delete(long domainID);
 }

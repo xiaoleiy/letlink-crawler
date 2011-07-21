@@ -18,22 +18,25 @@
 		VALUES(#{name}, #{alias}, #{isCrawling, jdbcType=BOOLEAN}, #{comment})
 	</insert>
 	
-	<select id="selectById" parameterType="long" resultType="Domain">
+	<select id="selectById" parameterType="long" resultMap="domainResultMap">
 		SELECT <include refid="full_cols"/> FROM domains WHERE domain_id = #{id}
 	</select>
-	<select id="selectByName" parameterType="String" resultType="Domain">
+	<select id="selectByName" parameterType="String" resultMap="domainResultMap">
 		SELECT <include refid="full_cols"/> FROM domains WHERE name = #{name}
 	</select>
-	<select id="selectAllCrawling" parameterType="boolean" resultType="Domain">
+	<select id="selectAllCrawling" parameterType="boolean" resultMap="domainResultMap">
 		SELECT <include refid="full_cols"/>
 		FROM domains
 		WHERE isCrawling = #{isCrawling, jdbcType=BOOLEAN}
 	</select>
-	<select id="selectAllByCategory" parameterType="int" resultType="Domain">
-		SELECT <include refid="full_cols"/>
+	<select id="selectAllByCategory" parameterType="int" resultMap="domainResultMap">
+		SELECT A.domain_id, A.name, A.alias, A.isCrawling, A.comment
 		FROM domains A, category_domains B
 		WHERE A.domain_id = B.domain_id
 		AND B.category_id = #{id}
+	</select>
+	<select id="selectAll" resultMap="domainResultMap">
+		SELECT <include refid="full_cols"/> FROM domains
 	</select>
 	
 	<update id="update" parameterType="Domain" flushCache="true">

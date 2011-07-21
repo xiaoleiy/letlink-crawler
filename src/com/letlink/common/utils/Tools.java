@@ -9,7 +9,7 @@ public class Tools {
 	}
 	
 	public static String getParam(Map<String, String[]> params, String key){
-		if(key == null || "".equals(key))
+		if(key == null || "".equals(key) || !params.containsKey(key))
 			return null;
 		return params.get(key)[0];
 	}

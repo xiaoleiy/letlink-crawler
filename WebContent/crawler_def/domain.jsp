@@ -13,32 +13,57 @@
 <script type="text/javascript" src="../styles/jquery-1.6.2.js"></script>
 <script type="text/javascript" src="../styles/main.js"></script>
 <script type="text/javascript">
-	function categories_load(){
+	function category_load(){
 		$.ajax({
 			type: 'GET',
-			url: 'listCategories.do',
+			url: 'loadCategory',
 			dataType: 'json',
 			success: function(data){
 				var cnt, cateListdiv = $('.main .leftnav #category_list');
-				var cateList = data.cateList;
-				for(cnt = 0; cnt < cateList.lenth; cnt++){
-					cateListdiv.append('<li><a href="javascript:domains_load(' + cateList[cnt].category_id + ')">'
-							+ cateList[cnt].category_name + '</a></li>');
+				for(cnt = 0; cnt < data.length; cnt++){
+					var itemHTML = '<li><a href="javascript:domain_load(' + data[cnt].categoryID
+								+ ')" title="' + data[cnt].comment + '">' + data[cnt].name
+								+ '</a></li>';
+					cateListdiv.append(itemHTML);
 				}
-				cateListdiv.after('<p>Total: ' + cnt + ' categories</p>');
+				cateListdiv.after('<br/><p style="padding-bottom:0; margin-bottom:0; color: gray;">Total: ' + cnt + ' categories</p>');
 			}
 		});
 	}
 	
-	function domains_load(category_id){
-		/* get domains by category_id, and when category_id is NULL, get all domains */
-		
+	function domain_load(){
+		var param;
+		if(arguments.length != 0)
+			 param = '?category_id=' + arguments[0];
+		else param = '';
+		$.ajax({
+			type: 'GET',
+			url: 'loadDomain' + param,
+			dataType: 'json',
+			success: function(data){
+				var cnt, tbody = $('.datalist #domain_tbl tbody');
+				tbody.empty();
+				for(cnt = 0; cnt < data.length; cnt++){
+					var rowHTML = '<tr><td>' + data[cnt].alias + '</td>'
+									+ '<td>' + data[cnt].name  + '</td>'
+									+ '<td>' + data[cnt].comment  + '</td>'
+									+ '</tr>';
+					tbody.append(rowHTML);
+				}
+				$('.datalist #domain_tbl caption').text('Total: ' + cnt + ' domains');
+			}
+		});
+	}
+	
+	function data_load(){
+		category_load();
+		domain_load();
 	}
 </script>
 </head>
 <body onload="<%
 		if(session.getAttribute("logined") != null && ((Boolean)session.getAttribute("logined")).booleanValue())
-			out.print("javascript:categories_load()");
+			out.print("javascript:data_load()");
 		else out.print("javascript:login_warn()"); 
 	%> ">
 	<div class="wrapper">
@@ -49,7 +74,22 @@
 					
 				</ul>
 			</div>
-			<form id="add_domain_form" action="addDomain" method="POST">
+			<div class="datalist">
+				<table id="domain_tbl">
+					<thead>
+						<tr>
+							<th>Domain Alias</th>
+							<th>Domain Name</th>
+							<th>Comment</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+					</tbody>
+					<caption></caption>
+				</table>
+			</div>
+			<!-- <form id="add_domain_form" action="addDomain" method="POST">
 				<div>
 					<label class="basic_label">Domain Name:&nbsp;</label>
 					<input id="domain_name" type="text" class="basic_input" name="domainName" maxlength="150" tabindex="1" />
@@ -67,7 +107,7 @@
 				<div>
 					<input type="submit" value="Add" />
 				</div>
-			</form>
+			</form> -->
 		</div>
 	</div>
 	<div id="copyright">
