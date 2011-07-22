@@ -19,7 +19,7 @@
 		<div class="main">
 			<h3>The Letlink Crawler&copy; product crawls images from all over the web, with high performance and availability.</h3>
 			<p>The product provides the following functions:</p>
-			<ul style="font: 12px tahoma, arial; margin:-15px 10px 15px 35px;padding-top:0">
+			<ul>
 				<li>Crawler definition</li>
 				<li>Image crawling</li>
 				<li>System monitor and image viewing</li>
@@ -28,15 +28,16 @@
 				<li>Interface to the phase-I project</li>
 			</ul>
 		</div>
-		
 	</div>
 	
 	<div id="copyright">
-		<span>&nbsp; &copy; 2011, www.letlink.com, All rights Reserved</span>
-		<br /><span>&nbsp; Compatible with CSS2, HTML4.0</span>
-		<br /><span>&nbsp; Powered by <a href="http://crawler.archive.org" ><i>Heritrix Project</i></a>
+		<ul>
+			<li>&nbsp; &copy; 2011, www.letlink.com, All rights Reserved</li>
+			<li>&nbsp; Compatible with CSS2, HTML4.0</li>
+			<li>&nbsp; Powered by <a href="http://crawler.archive.org" ><i>Heritrix Project</i></a>
 			, and <a href="http://netarchive.dk/suite" ><i>Netarchive Project</i></a>.
-		</span>
+			</li>
+		</ul>
 	</div>
 	<div class="clear"> </div>
 </body>

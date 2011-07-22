@@ -70,9 +70,7 @@
 		<jsp:include page="../_menu.jsp"></jsp:include>
 		<div class="main">
 			<div class="leftnav">
-				<ul id="category_list">
-					
-				</ul>
+				<ul id="category_list"></ul>
 			</div>
 			<div class="datalist">
 				<table id="domain_tbl">
@@ -83,9 +81,7 @@
 							<th>Comment</th>
 						</tr>
 					</thead>
-					<tbody>
-					
-					</tbody>
+					<tbody></tbody>
 					<caption></caption>
 				</table>
 			</div>
@@ -111,11 +107,14 @@
 		</div>
 	</div>
 	<div id="copyright">
-		<span>&nbsp; &copy; 2011, www.letlink.com, All rights Reserved</span>
-		<br /><span>&nbsp; Compatible with CSS2, HTML4.0</span>
-		<br /><span>&nbsp; Powered by <a href="http://crawler.archive.org" ><i>Heritrix Project</i></a>
+		<ul>
+			<li>&nbsp; &copy; 2011, www.letlink.com, All rights Reserved</li>
+			<li>&nbsp; Compatible with CSS2, HTML4.0</li>
+			<li>&nbsp; Powered by <a href="http://crawler.archive.org" ><i>Heritrix Project</i></a>
 			, and <a href="http://netarchive.dk/suite" ><i>Netarchive Project</i></a>.
-		</span>
+			</li>
+		</ul>
 	</div>
+	<div class="clear"> </div>
 </body>
 </html>
