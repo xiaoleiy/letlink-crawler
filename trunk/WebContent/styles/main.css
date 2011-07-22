@@ -27,8 +27,16 @@ p {
 	margin-bottom: 25px
 }
 
+/** -15px for text indenting */
+ul {
+	font: 12px tahoma, arial;
+	margin: 5px 10px 10px;
+	padding-top:0;
+}
+
 a {
-	color: #324143
+	color: #324143;
+	text-decoration: none;
 }
 
 div.wrapper {
@@ -124,6 +132,7 @@ div.wrapper .header p.welcome_bar a {
 	margin: 10px auto;
 	padding: 5px 5px;
 	text-align: left;
+	font: 12px tahoma, arial;
 }
 
 .wrapper .main table {
@@ -209,14 +218,16 @@ div.wrapper .header p.welcome_bar a {
 	background: #B6C28B;
 	border-top: 1px dashed #DDD;
 	margin: 0 auto;
-	padding: 20px 35px;
+	padding: 25px 35px 5px;
 	min-width: 650px; 
 	font: 12px tahoma, arial;
 	color: #324143;
 }
 
-#copyright span {
+#copyright ul {
 	float: center;
+	text-align: center;
+	padding-top: 10px;
 }
 
 #copyright span a {
