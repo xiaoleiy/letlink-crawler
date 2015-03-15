@@ -1,0 +1,1 @@
+Distributed crawler, developed based on Heriterix, a popular open source Java web crawler.
